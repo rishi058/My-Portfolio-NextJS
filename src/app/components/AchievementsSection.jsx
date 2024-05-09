@@ -12,7 +12,7 @@ const AnimatedNumbers = dynamic(
 const achievementsList = [
   {
     metric: "Commits on GitHub",
-    value: "250",
+    value: "350",
     postfix: "+",
   },
   {

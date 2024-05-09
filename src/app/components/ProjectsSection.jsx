@@ -50,6 +50,24 @@ const projectsData = [
     gitUrl: "https://github.com/rishi058/E-Commerce",
     previewUrl: "/",
   },
+  {
+    id: 6,
+    title: "Discussify Chat App",
+    description: "Features Real time communication using Web Socket, User Authentication, Animated Dark Mode & Responsive UI",
+    image: "/images/projects/6.png",
+    tag: ["All", "Web"],
+    gitUrl: "https://github.com/rishi058/Discussify-Chat-App-TypeScript",
+    previewUrl: "/",
+  },
+  {
+    id: 7,
+    title: "Notes App(Vite & React)",
+    description: "Features CRUD functionality with MongoDB, JWT Based Authentication, Glassmorphic & Responsive UI with Particles.js background",
+    image: "/images/projects/7.png",
+    tag: ["All", "Web"],
+    gitUrl: "https://github.com/rishi058/-Vite-React-Notes-App",
+    previewUrl: "/",
+  }
 ];
 
 const ProjectsSection = () => {

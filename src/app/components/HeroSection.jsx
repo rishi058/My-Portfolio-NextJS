@@ -40,7 +40,7 @@ const HeroSection = () => {
            🌱 I&apos;m currently learning MERN stack.
            <br/>
            <br/>
-           💬 Ask me about Flutter, Firebase, Golang, UI, UX, C++, DSA, Competetive Programming.
+           💬 Ask me about C/C++, Flutter, Javascript, Firebase, Express, UI/UX, DSA, Competetive Programming.
           </p>
           <div>
             <Link
