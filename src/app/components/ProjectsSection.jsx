@@ -67,6 +67,15 @@ const projectsData = [
     tag: ["All", "Web"],
     gitUrl: "https://github.com/rishi058/-Vite-React-Notes-App",
     previewUrl: "/",
+  },
+  {
+    id: 8,
+    title: "Recursion Visualizer",
+    description: "A powerful tool designed to help developers easily visualize and debug the recursion stack, enhancing understanding and efficiency in solving complex Recursive and Dynamic programming problems.",
+    image: "/images/projects/8.png",
+    tag: ["All", "Web"],
+    gitUrl: "https://github.com/rishi058/Recursion_Visualizer",
+    previewUrl: "https://recursion-visualizer-nu.vercel.app",
   }
 ];
 

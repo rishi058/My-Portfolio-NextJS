@@ -53,11 +53,11 @@ const AboutSection = () => {
   return (
     <section className="text-white" id="about">
       <div className="md:grid md:grid-cols-2 gap-8 items-center py-8 px-4 xl:gap-16 sm:py-16 xl:px-16">
-        <Image src="/images/about-image.png" width={500} height={500} />
+        <Image src="/images/about-image.png" width={500} height={500} alt="Image" />
         <div className="mt-4 md:mt-0 text-left flex flex-col h-full">
           <h2 className="text-4xl font-bold text-white mb-4">About Me</h2>
           <p className="text-base lg:text-lg  text-justify">
-          Hello, I&pos;m Rishi, a CSE undergraduate from IIIT Bhagalpur in Patna, Bihar. My focus lies in Web & App development and problem solving, with expertise in HTML, CSS, Javascript, C/C++, Flutter, Firebase, and GitHub. I&pos;ve crafted various apps & websites, some available on Google Play Store, ranging from basic utilities to advanced E-commerce and Appointment booking apps. Proficient core subjects like OS, OOP, CN, DSA, DAA, and DBMS. I applied my skills during an internship at Duckcart, gaining hands-on experience with extra tools loke Notion, Jira, Slack, and GitLab. As the lead of my college&pos;s app development club, I organized meetings and showcased leadership.
+          Hello, I&apos;m Rishi, a CSE undergraduate from IIIT Bhagalpur in Patna, Bihar. My focus lies in Web & App development and problem solving, with expertise in HTML, CSS, Javascript, C/C++, Flutter, Firebase, and GitHub. I&pos;ve crafted various apps & websites, some available on Google Play Store, ranging from basic utilities to advanced E-commerce and Appointment booking apps. Proficient core subjects like OS, OOP, CN, DSA, DAA, and DBMS. I applied my skills during an internship at Duckcart, gaining hands-on experience with extra tools loke Notion, Jira, Slack, and GitLab. As the lead of my college&pos;s app development club, I organized meetings and showcased leadership.
           </p>
           <div className="flex flex-row justify-start mt-8">
             <TabButton
