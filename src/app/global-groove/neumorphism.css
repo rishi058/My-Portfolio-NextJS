@@ -1,0 +1,180 @@
+
+.ngContainer {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #121212;
+  padding: 2rem;
+  font-family: 'Inter', sans-serif;
+}
+
+.ngCard {
+  width: 100%;
+  max-width: 550px;
+  background: #121212;
+  border-radius: 40px;
+  padding: 3.5rem;
+  box-shadow: 20px 20px 60px #0b0b0b,
+             -20px -20px 60px #191919;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.ngCard:hover {
+  transform: scale(1.01);
+}
+
+.ngTitle {
+  color: #69fff8;
+  font-size: 2.2rem;
+  font-weight: 800;
+  margin-bottom: 0.75rem;
+  text-align: center;
+  letter-spacing: -0.02em;
+}
+
+.ngSubtitle {
+  color: #adb7be;
+  font-size: 0.95rem;
+  margin-bottom: 3rem;
+  text-align: center;
+  line-height: 1.6;
+  opacity: 0.8;
+}
+
+.ngFormGroup {
+  margin-bottom: 1.8rem;
+}
+
+.ngLabel {
+  display: block;
+  color: #ffffff;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 0.8rem;
+  margin-left: 1.2rem;
+  opacity: 0.9;
+}
+
+.ngInput, .ngSelect, .ngTextarea {
+  width: 100%;
+  background: #121212;
+  border: 1px solid transparent;
+  border-radius: 24px;
+  padding: 1.1rem 1.6rem;
+  color: #ffffff;
+  font-size: 1rem;
+  box-shadow: inset 8px 8px 16px #0b0b0b,
+             inset -8px -8px 16px #191919;
+  outline: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ngInput:focus, .ngSelect:focus, .ngTextarea:focus {
+  box-shadow: inset 10px 10px 20px #080808,
+             inset -10px -10px 20px #1c1c1c;
+  border: 1px solid rgba(105, 255, 248, 0.1);
+}
+
+.ngSelect {
+  appearance: none;
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2369fff8'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1.5rem center;
+  background-size: 1.2rem;
+}
+
+.ngButton {
+  width: 100%;
+  margin-top: 1.5rem;
+  background: #121212;
+  border: 1px solid rgba(105, 255, 248, 0.1);
+  border-radius: 24px;
+  padding: 1.2rem;
+  color: #ffffff;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 8px 8px 16px #0b0b0b,
+             -8px -8px 16px #191919;
+  transition: all 0.3s ease;
+}
+
+.ngButton:hover:not(:disabled) {
+  box-shadow: 12px 12px 24px #080808,
+             -12px -12px 24px #1c1c1c;
+  color: #69fff8;
+  transform: translateY(-2px);
+}
+
+.ngButton:active:not(:disabled) {
+  box-shadow: inset 6px 6px 12px #0b0b0b,
+             inset -6px -6px 12px #191919;
+  transform: translateY(1px);
+}
+
+.ngButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.ngSuccessMessage {
+  padding: 1rem;
+  text-align: center;
+}
+
+.ngSuccessTitle {
+  color: #69fff8;
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.ngSuccessText {
+  color: #adb7be;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.ngBackButton {
+  display: inline-block;
+  margin-top: 2rem;
+  color: #ffffff;
+  background: #121212;
+  padding: 0.8rem 2rem;
+  border-radius: 20px;
+  box-shadow: 6px 6px 12px #0b0b0b,
+             -6px -6px 12px #191919;
+  font-size: 0.9rem;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.ngBackButton:hover {
+  color: #69fff8;
+  box-shadow: 4px 4px 8px #0b0b0b,
+             -4px -4px 8px #191919;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(40px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+.animate-slideIn {
+  animation: slideIn 0.8s ease-out 0.2s forwards;
+  opacity: 0;
+}
