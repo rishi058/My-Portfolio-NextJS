@@ -99,8 +99,8 @@ const HeroSection = () => {
           transition={{ duration: 0.5 }}
           className="col-span-8 place-self-center text-center sm:text-left justify-self-start"
         >
-          <h1 className="text-on-surface mb-6 text-[38px] md:text-[54px] font-headline-lg font-bold leading-tight tracking-tight">
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-secondary-500">
+          <h1 className="hero-heading mb-6">
+            <span className="hero-heading-gradient">
               Hello, I&apos;m{" "}
             </span>
             <br></br>
@@ -126,7 +126,7 @@ const HeroSection = () => {
               repeat={Infinity}
             />
           </h1>
-          <p className="text-on-surface-variant text-body-lg font-body-lg mb-8 max-w-2xl leading-relaxed">
+          <p className="hero-description mb-8 max-w-2xl">
             🌱 I&apos;m currently learning core AI/ML.
             <br />
             <br />
@@ -135,15 +135,20 @@ const HeroSection = () => {
           <div className="flex flex-col sm:flex-row gap-4 items-center sm:justify-start">
             <Link
               href="mailto:rishi.cs.dev@gmail.com"
-              className="px-6 py-3 w-full sm:w-fit rounded-lg bg-primary-500 text-white font-medium hover:bg-primary-600 transition-all duration-300 shadow-[0_0_20px_rgba(20,184,166,0.25)] text-center text-label-sm min-w-[120px]"
+              className="hero-cta-primary px-6 py-3 w-full sm:w-fit flex items-center justify-center min-w-[120px]"
               onMouseEnter={() => setHovered(true)}
               onMouseLeave={() => setHovered(false)}
             >
-              {hovered ? "rishi.cs.dev@gmail.com" : "Hire Me"}
+              <span className={`text-center whitespace-nowrap overflow-hidden transition-all duration-500 ease-in-out ${hovered ? 'w-0 opacity-0' : 'w-[65px] opacity-100'}`}>
+                Hire Me
+              </span>
+              <span className={`text-center whitespace-nowrap overflow-hidden transition-all duration-500 ease-in-out ${hovered ? 'w-[185px] opacity-100' : 'w-0 opacity-0'}`}>
+                rishi.cs.dev@gmail.com
+              </span>
             </Link>
             <Link
               href={'https://drive.google.com/file/d/18Fof1b0Gwl4E2YnVQk5xIGLkc3N5XwP4/view'}
-              className="px-6 py-3 w-full sm:w-fit rounded-lg bg-surface text-on-surface font-medium border border-outline hover:bg-on-background/5 transition-all duration-200 text-center text-label-sm"
+              className="hero-cta-secondary px-6 py-3 w-full sm:w-fit text-center"
               target="_blank"
             >
               View Resume
@@ -159,14 +164,14 @@ const HeroSection = () => {
           className="col-span-4 place-self-center mt-4 lg:mt-0 relative w-full max-w-[300px] sm:max-w-[350px] lg:max-w-[400px] aspect-square"
         >
           <BorderGlow
-            className="w-full h-full shadow-lg"
+            className="hero-avatar-border w-full h-full"
             borderRadius={4}
             animated
             backgroundColor="transparent"
             fillOpacity={0}
             colors={['#14b8a6', '#0ea5e9', '#3b82f6']}
           >
-            <canvas ref={canvasRef} className="absolute inset-0 w-full h-full pointer-events-auto rounded-2xl overflow-hidden" />
+            <canvas ref={canvasRef} className="hero-avatar-canvas absolute inset-0 w-full h-full pointer-events-auto" />
           </BorderGlow>
         </motion.div>
 
@@ -174,9 +179,9 @@ const HeroSection = () => {
 
       {/* You are my Xth Visitor */}
       <div className="mt-0">
-        <p className="flex flex-wrap items-center justify-center text-center gap-x-2 text-2xl sm:text-3xl font-bold text-on-surface-variant">
+        <p className="hero-visitor-text flex flex-wrap items-center justify-center text-center gap-x-2">
           <span>You are my</span>
-          <span className="inline-flex items-baseline text-primary">
+          <span className="hero-visitor-count inline-flex items-baseline">
             <AnimatedNumbers
               includeComma
               animateToNumber={visitorCount}

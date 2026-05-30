@@ -3,11 +3,6 @@
 'use client';
 import React, { useMemo } from 'react';
 
-const CARD_BASE =
-  'bg-surface border border-outline rounded-[0.4em] p-[0.75em] shadow-md ' +
-  'hover:border-primary-500/50 hover:shadow-[0_0_15px_rgba(20,184,166,0.15)] hover:scale-[1.02] ' +
-  'transition-all duration-300';
-
 function getTicksAndMax(rawMax) {
   if (rawMax <= 5) return { max: 5, ticks: [0, 1, 2, 3, 4, 5] };
   if (rawMax <= 10) return { max: 10, ticks: [0, 2, 4, 6, 8, 10] };
@@ -120,11 +115,11 @@ export default function ProfileDetailsCard({ data, scale = '1rem', className = '
 
   return (
     <div
-      className={`${CARD_BASE} ${className} inline-flex flex-col w-full md:w-fit`}
+      className={`github-card ${className} inline-flex flex-col w-full md:w-fit`}
       style={{ fontSize: scale, height: '11em', paddingLeft: '1.25em', paddingTop: '0.5em', paddingBottom: '0.5em' }}
     >
       {/* Heading: Username on top */}
-      <h3 className="text-[0.875em] font-bold text-primary-500 leading-tight">
+      <h3 className="profile-heading">
         {username}{name ? ` (${name})` : ''}
       </h3>
 
@@ -139,20 +134,20 @@ export default function ProfileDetailsCard({ data, scale = '1rem', className = '
         {/* Right Column: Line Graph */}
         <div className="flex flex-col flex-1 min-w-0 justify-between gap-[0.25em]">
           <div className="flex justify-end">
-            <span className="text-[0.625em] text-on-surface-variant opacity-70 whitespace-nowrap">
+            <span className="github-chart-subtitle">
               contributions in the last year
             </span>
           </div>
           {chartData && (
             <svg
               viewBox={`0 0 ${chartData.W} ${chartData.H}`}
-              className="w-full flex-1 text-on-surface-variant fill-current"
-              style={{ display: 'block' }}
+              className="w-full flex-1 fill-current"
+              style={{ display: 'block', color: 'var(--on-surface-variant)' }}
             >
               <defs>
                 <linearGradient id="spark-grad" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stopColor="var(--tertiary, #69fff8)" stopOpacity="0.35" />
-                  <stop offset="100%" stopColor="var(--tertiary, #69fff8)" stopOpacity="0.03" />
+                  <stop offset="0%" stopColor="var(--chart-accent)" stopOpacity="0.35" />
+                  <stop offset="100%" stopColor="var(--chart-accent)" stopOpacity="0.03" />
                 </linearGradient>
               </defs>
               
@@ -169,7 +164,7 @@ export default function ProfileDetailsCard({ data, scale = '1rem', className = '
                 <path
                   d={chartData.linePath}
                   fill="none"
-                  stroke="var(--tertiary, #69fff8)"
+                  stroke="var(--chart-accent)"
                   strokeWidth="1.5"
                   strokeLinejoin="round"
                   strokeLinecap="round"
@@ -182,7 +177,7 @@ export default function ProfileDetailsCard({ data, scale = '1rem', className = '
                 y1={chartData.yMax}
                 x2={chartData.xMax}
                 y2={chartData.yMax}
-                stroke="var(--outline, #e2e8f0)"
+                stroke="var(--outline)"
                 strokeWidth="1"
                 opacity="0.3"
               />
@@ -193,7 +188,7 @@ export default function ProfileDetailsCard({ data, scale = '1rem', className = '
                 y1={10}
                 x2={chartData.xMax}
                 y2={chartData.yMax}
-                stroke="var(--outline, #e2e8f0)"
+                stroke="var(--outline)"
                 strokeWidth="1"
                 opacity="0.3"
               />
@@ -208,7 +203,7 @@ export default function ProfileDetailsCard({ data, scale = '1rem', className = '
                       y1={chartData.yMax}
                       x2={tick.x}
                       y2={chartData.yMax + 4}
-                      stroke="var(--outline, #e2e8f0)"
+                      stroke="var(--outline)"
                       strokeWidth="1"
                       opacity="0.5"
                     />
@@ -218,7 +213,7 @@ export default function ProfileDetailsCard({ data, scale = '1rem', className = '
                       textAnchor="middle"
                       fontSize="8"
                       fontWeight="bold"
-                      className="fill-current text-on-surface-variant"
+                      fill="var(--on-surface-variant)"
                     >
                       {tick.label}
                     </text>
@@ -234,7 +229,7 @@ export default function ProfileDetailsCard({ data, scale = '1rem', className = '
                     y1={tick.y}
                     x2={chartData.xMax + 4}
                     y2={tick.y}
-                    stroke="var(--outline, #e2e8f0)"
+                    stroke="var(--outline)"
                     strokeWidth="1"
                     opacity="0.5"
                   />
@@ -244,7 +239,7 @@ export default function ProfileDetailsCard({ data, scale = '1rem', className = '
                     textAnchor="start"
                     fontSize="8"
                     fontWeight="bold"
-                    className="fill-current text-on-surface-variant"
+                    fill="var(--on-surface-variant)"
                   >
                     {tick.val}
                   </text>
@@ -260,10 +255,9 @@ export default function ProfileDetailsCard({ data, scale = '1rem', className = '
 
 function ProfileDetailRow({ icon, text }) {
   return (
-    <div className="flex items-center gap-[0.375em] text-[0.6875em] text-on-surface-variant">
-      <span className="material-symbols-outlined text-[1.25em] leading-none text-primary-500">{icon}</span>
+    <div className="profile-detail-row flex items-center gap-[0.375em]">
+      <span className="github-stat-icon material-symbols-outlined text-[1.25em] leading-none">{icon}</span>
       <span>{text}</span>
     </div>
   );
 }
-

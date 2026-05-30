@@ -84,19 +84,17 @@ function PlatformLink({ platform }) {
       target="_blank"
       rel="noopener noreferrer"
       id={`link-${platform.id}`}
-      className="group inline-flex w-fit items-center gap-3 p-2.5 rounded-xl border border-outline bg-surface
-                 hover:border-primary-500/50 hover:shadow-[0_0_15px_rgba(20,184,166,0.15)] hover:scale-[1.02]
-                 transition-all duration-300 shadow-md"
+      className="platform-link group inline-flex w-fit items-center gap-3 p-2.5"
     >
       <div
-        className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 transition-transform group-hover:scale-110"
+        className="platform-link-icon w-8 h-8 flex items-center justify-center flex-shrink-0"
         style={{ backgroundColor: bgColor, color: platform.color }}
       >
         {platform.icon}
       </div>
       <div className="min-w-0 flex-shrink-0">
-        <div className="text-xs font-semibold text-on-surface leading-tight">{platform.label}</div>
-        <div className="text-[10px] text-on-surface-variant truncate">{platform.username}</div>
+        <div className="platform-link-label">{platform.label}</div>
+        <div className="platform-link-username">{platform.username}</div>
       </div>
     </a>
   );
@@ -111,8 +109,8 @@ const DigitalPresenceSection = () => {
     >
       {/* Section heading */}
       <div className="flex items-center justify-center gap-3 flex-shrink-0 w-full my-2">
-        <span className="material-symbols-outlined text-[32px] text-primary-500">public</span>
-        <h2 className="text-3xl md:text-4xl font-semibold text-primary-500"> 
+        <span className="dp-heading-icon material-symbols-outlined text-[32px]">public</span>
+        <h2 className="dp-heading"> 
           Digital Presence
         </h2>
       </div>
@@ -121,7 +119,7 @@ const DigitalPresenceSection = () => {
       <div className="flex flex-col md:flex-row gap-8 md:gap-16 flex-shrink-0 w-full justify-center items-center">
         {/* Socials */}
         <div className="flex flex-col gap-3 items-center">
-          <h3 className="text-sm font-semibold text-on-surface-variant tracking-wider uppercase flex items-center gap-2">
+          <h3 className="dp-subheading flex items-center gap-2">
             <span className="material-symbols-outlined text-[16px]">group</span>
             Socials
           </h3>
@@ -134,7 +132,7 @@ const DigitalPresenceSection = () => {
 
         {/* Coding Platforms */}
         <div className="flex flex-col gap-3 items-center">
-          <h3 className="text-sm font-semibold text-on-surface-variant tracking-wider uppercase flex items-center gap-2">
+          <h3 className="dp-subheading flex items-center gap-2">
             <span className="material-symbols-outlined text-[16px]">code</span>
             Coding Platforms
           </h3>

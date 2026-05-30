@@ -1,11 +1,6 @@
 'use client';
 import React from 'react';
 
-const CARD_BASE =
-  'bg-surface border border-outline rounded-[0.4em] p-[0.75em] shadow-md ' +
-  'hover:border-primary-500/50 hover:shadow-[0_0_15px_rgba(20,184,166,0.15)] hover:scale-[1.02] ' +
-  'transition-all duration-300';
-
 /**
  * A pure-SVG donut chart card.
  * Fixed intrinsic size: width = 18em, height = 11em.
@@ -35,10 +30,10 @@ export default function DonutChartCard({ title, data = [], scale = '1rem', class
 
   return (
     <div
-      className={`${CARD_BASE} ${className} inline-flex flex-col`}
+      className={`github-card ${className} inline-flex flex-col`}
       style={{ fontSize: scale, width: '18em', height: '11em' }}
     >
-      <h3 className="text-[0.75em] font-semibold text-primary-500 mb-[0.5em] tracking-wide uppercase flex-shrink-0">
+      <h3 className="github-card-title mb-[0.5em] flex-shrink-0">
         {title}
       </h3>
 
@@ -51,7 +46,7 @@ export default function DonutChartCard({ title, data = [], scale = '1rem', class
               cx={cx} cy={cy} r={r}
               fill="none" stroke="currentColor"
               strokeWidth={strokeWidth}
-              className="text-outline/20"
+              className="donut-track"
             />
             {segments.map((seg, i) => (
               <circle
@@ -62,7 +57,7 @@ export default function DonutChartCard({ title, data = [], scale = '1rem', class
                 strokeWidth={strokeWidth}
                 strokeDasharray={`${seg.dashArray} ${circumference}`}
                 strokeDashoffset={-circumference + seg.dashOffset}
-                style={{ transition: 'stroke-dasharray 0.6s ease' }}
+                className="donut-segment"
               />
             ))}
           </svg>
@@ -76,7 +71,7 @@ export default function DonutChartCard({ title, data = [], scale = '1rem', class
                 className="w-[0.5em] h-[0.5em] rounded-full flex-shrink-0"
                 style={{ backgroundColor: d.color }}
               />
-              <span className="text-[0.75em] text-on-surface-variant truncate">{d.name}</span>
+              <span className="donut-legend-text">{d.name}</span>
             </li>
           ))}
         </ul>

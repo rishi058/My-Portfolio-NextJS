@@ -1,4 +1,5 @@
 import './globals.css'
+import './styles/neon.css'
 import Script from 'next/script'
 
 export const metadata = {
@@ -35,9 +36,9 @@ export default function RootLayout({ children }) {
           }}
         />
       </head>
-      <body className="bg-background text-on-background antialiased selection:bg-primary-container selection:text-on-primary-container font-sans">
+      <body>
         <SplashCursor />
-        <div className="fixed inset-0 z-0 opacity-50 pointer-events-none hidden dark:block">
+        <div className="fixed inset-0 z-0 pointer-events-none silk-overlay">
           <Silk
             speed={3}
             scale={.5}

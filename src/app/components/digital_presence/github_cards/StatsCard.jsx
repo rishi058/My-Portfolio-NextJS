@@ -1,11 +1,6 @@
 'use client';
 import React from 'react';
 
-const CARD_BASE =
-  'bg-surface border border-outline rounded-[0.4em] p-[0.75em] shadow-md ' +
-  'hover:border-primary-500/50 hover:shadow-[0_0_15px_rgba(20,184,166,0.15)] hover:scale-[1.02] ' +
-  'transition-all duration-300';
-
 /**
  * GitHub Stats card showing stars, commits, PRs, issues, contributed-to.
  * Fixed intrinsic size: width = content-driven, height = 11em.
@@ -33,11 +28,11 @@ export default function StatsCard({ data, scale = '1rem', className = '' }) {
 
   return (
     <div
-      className={`${CARD_BASE} ${className} inline-flex flex-col`}
+      className={`github-card ${className} inline-flex flex-col`}
       style={{ fontSize: scale, width: '18em', height: '11em', padding: '0.75em 0.875em' }}
     >
       {/* Title */}
-      <h3 className="text-[0.75em] font-bold text-primary-500 dark:text-primary-400 mb-[0.5em] tracking-widest uppercase flex-shrink-0">
+      <h3 className="github-card-title github-card-title--bold mb-[0.5em] flex-shrink-0">
         Stats
       </h3>
 
@@ -48,12 +43,12 @@ export default function StatsCard({ data, scale = '1rem', className = '' }) {
           {stats.map((s, i) => (
             <li key={i} className="flex items-center gap-[0.75em] text-[0.6em] whitespace-nowrap">
               <div className="flex items-center gap-[0.35em]">
-                <span className="material-symbols-outlined text-primary-500 dark:text-primary-400 text-[1.1em] leading-none">
+                <span className="stats-icon material-symbols-outlined text-[1.1em] leading-none">
                   {s.icon}
                 </span>
-                <span className="text-on-surface-variant">{s.label}</span>
+                <span className="stats-label">{s.label}</span>
               </div>
-              <span className="font-bold text-primary-600 dark:text-primary-300 tabular-nums ml-auto">
+              <span className="stats-value ml-auto">
                 {s.value.toLocaleString()}
               </span>
             </li>
@@ -61,7 +56,7 @@ export default function StatsCard({ data, scale = '1rem', className = '' }) {
         </ul>
 
         {/* Big GitHub Octocat — decorative watermark */}
-        <div className="opacity-[0.18] text-on-surface self-center flex-shrink-0 ml-3">
+        <div className="stats-watermark self-center flex-shrink-0 ml-3">
           <GitHubOctocat size="7em" />
         </div>
       </div>

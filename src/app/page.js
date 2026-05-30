@@ -7,7 +7,7 @@ import Footer from "./components/Footer";
 
 export default function Home() {
   return (
-    <main className="flex h-screen overflow-hidden flex-col text-on-background relative z-10">
+    <main className="flex h-screen overflow-hidden flex-col relative z-10">
       <Navbar />
       <div
         className="w-full h-[calc(100vh-3rem)] mt-12 overflow-y-auto snap-y snap-mandatory scroll-smooth"
@@ -25,7 +25,7 @@ export default function Home() {
           <div className="flex-1 w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop flex items-center justify-center">
             <DigitalPresenceSection />
           </div>
-          <div className="w-full bg-surface">
+          <div className="footer-wrapper w-full">
             <Footer />
           </div>
         </div>

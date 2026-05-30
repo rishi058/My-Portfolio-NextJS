@@ -33,13 +33,9 @@ const Stepper = ({ items }) => {
   return (
     <div className="relative ml-3 mt-4">
       {/* Vertical line with shimmer animation */}
-      <div className="absolute left-0 top-0 bottom-0 w-0.5 bg-primary-500/25 overflow-hidden rounded-full">
+      <div className="stepper-line absolute left-0 top-0 bottom-0 w-0.5">
         <motion.div
-          className="absolute left-0 right-0 h-1/3 rounded-full"
-          style={{
-            background:
-              "linear-gradient(to bottom, transparent 0%, rgba(20,184,166,0.9) 50%, transparent 100%)",
-          }}
+          className="stepper-shimmer absolute left-0 right-0 h-1/3"
           animate={{ top: ["133%", "-33%"] }} 
           transition={{ duration: 2.2, repeat: Infinity, ease: "linear" }}
         />
@@ -54,11 +50,11 @@ const Stepper = ({ items }) => {
           className="mb-8 ml-6 relative"
         >
           {/* Timeline Dot — centered on the line: ml-6=1.5rem, dot w-3=0.75rem → offset=1.5-0.375=1.125rem */}
-          <span className="absolute w-3 h-3 bg-primary-500 rounded-full -left-[1.800rem] top-1 shadow-[0_0_6px_rgba(20,184,166,0.7)]"></span>
+          <span className="stepper-dot absolute w-3 h-3 -left-[1.800rem] top-1"></span>
 
-          <h3 className="flex items-center mb-1 text-md font-semibold text-on-surface">{item.title}</h3>
-          <time className="block mb-2 text-sm font-medium text-primary-500">{item.date}</time>
-          <p className="text-md font-normal text-on-surface-variant leading-relaxed">{item.subtitle}</p>
+          <h3 className="stepper-title flex items-center mb-1">{item.title}</h3>
+          <time className="stepper-date block mb-2">{item.date}</time>
+          <p className="stepper-subtitle">{item.subtitle}</p>
         </motion.div>
       ))}
     </div>
@@ -79,7 +75,7 @@ const TAB_DATA = [
         {SKILLS.map((skill, index) => (
           <div
             key={index}
-            className="px-4 py-2 bg-primary-500/10 text-primary-500 rounded-full text-sm font-medium border border-primary-500/20 shadow-sm backdrop-blur-sm hover:bg-primary-500/20 transition-colors cursor-default"
+            className="skill-chip px-4 py-2"
           >
             {skill}
           </div>
@@ -118,25 +114,25 @@ const AboutSection = () => {
   };
 
   return (
-    <section className="text-on-surface py-8 h-full w-full flex items-center" id="about">
+    <section className="py-8 h-full w-full flex items-center" id="about">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-stretch max-w-7xl mx-auto w-full">
 
         {/* Left Side: Avatar & Intro */}
         <div className="lg:col-span-5 flex flex-col items-center justify-center">
           <BorderGlow
-            className="w-72 h-72 md:w-80 md:h-80 lg:w-[300px] lg:h-[300px] rounded-full dark:shadow-[0_0_30px_rgba(var(--color-primary-500),0.3)]"
+            className="about-avatar-glow w-72 h-72 md:w-80 md:h-80 lg:w-[300px] lg:h-[300px]"
             borderRadius={9999}
             animated
             backgroundColor="transparent"
             fillOpacity={0}
             colors={['#14b8a6', '#0ea5e9', '#3b82f6']}
           >
-            <div className="w-full h-full rounded-full overflow-hidden relative flex items-center justify-center bg-transparent">
-              {RiveComponent ? <RiveComponent className="w-full h-full object-contain" /> : <div className="w-full h-full animate-pulse bg-outline/20" />}
+            <div className="w-full h-full rounded-full overflow-hidden relative flex items-center justify-center">
+              {RiveComponent ? <RiveComponent className="w-full h-full object-contain" /> : <div className="w-full h-full animate-pulse" style={{ backgroundColor: 'var(--outline-variant)' }} />}
             </div>
           </BorderGlow>
           <div className="mt-8 text-center space-y-2">
-            <h3 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary-400 to-secondary-500 font-headline-lg">
+            <h3 className="about-intro-heading">
               Get to know me..
             </h3>
           </div>
@@ -144,11 +140,11 @@ const AboutSection = () => {
 
         {/* Right Side: About & Tabs */}
         <div className="lg:col-span-7 text-left flex flex-col h-full justify-start mt-8 lg:mt-0">
-          <h2 className="text-headline-lg font-headline-lg text-on-surface mb-6 flex items-center gap-3 text-primary-500">
-            <span className="material-symbols-outlined text-primary-500 text-4xl">person</span> 
+          <h2 className="section-heading mb-6 flex items-center gap-3">
+            <span className="section-heading-icon material-symbols-outlined text-4xl">person</span> 
             About Me
           </h2>
-          <p className="text-body-lg font-body-lg text-on-surface-variant text-justify leading-relaxed">
+          <p className="about-description">
             {ABOUT_ME}
           </p>
 
@@ -157,23 +153,23 @@ const AboutSection = () => {
               selectTab={() => handleTabChange("skills")}
               active={tab === "skills"}
             >
-              <span className="text-lg whitespace-nowrap">Skills</span>
+              <span className="tab-label">Skills</span>
             </TabButton>
             <TabButton
               selectTab={() => handleTabChange("education")}
               active={tab === "education"}
             >
-              <span className="text-lg whitespace-nowrap">Education</span>
+              <span className="tab-label">Education</span>
             </TabButton>
             <TabButton
               selectTab={() => handleTabChange("profession")}
               active={tab === "profession"}
             >
-              <span className="text-lg whitespace-nowrap">Experience</span>
+              <span className="tab-label">Experience</span>
             </TabButton>
           </div>
 
-          <div className="mt-8 text-on-surface-variant text-body-md leading-relaxed min-h-[300px]">
+          <div className="tab-content mt-8 min-h-[300px]">
             <AnimatePresence mode="wait">
               <motion.div
                 key={tab}

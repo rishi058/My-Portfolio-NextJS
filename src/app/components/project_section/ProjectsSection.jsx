@@ -45,8 +45,8 @@ const ProjectsSection = () => {
 
   return (
     <section id="projects" className="py-8 h-full w-full flex flex-col justify-center">
-      <h2 className="text-headline-lg font-headline-lg text-on-surface flex items-center justify-center gap-3 mb-6 text-primary-500">
-        <span className="material-symbols-outlined text-primary-500 text-3xl ">code</span>
+      <h2 className="section-heading flex items-center justify-center gap-3 mb-6">
+        <span className="section-heading-icon material-symbols-outlined text-3xl">code</span>
         My Projects
       </h2>
       <div className="flex flex-row justify-center items-center gap-3 mb-8 flex-wrap">
@@ -88,18 +88,18 @@ const ProjectsSection = () => {
           <button
             onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
             disabled={currentPage === 1}
-            className="p-2 rounded-full border border-outline text-on-surface hover:bg-surface-variant hover:text-primary-500 disabled:opacity-50 disabled:hover:bg-transparent transition-all"
+            className="pagination-btn p-2"
             aria-label="Previous Page"
           >
             <ChevronLeftIcon className="w-5 h-5" />
           </button>
-          <span className="text-on-surface-variant text-body-md font-medium">
-            {currentPage} <span className="opacity-50">/ {totalPages}</span>
+          <span className="pagination-text">
+            {currentPage} <span className="pagination-text-dim">/ {totalPages}</span>
           </span>
           <button
             onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
             disabled={currentPage === totalPages}
-            className="p-2 rounded-full border border-outline text-on-surface hover:bg-surface-variant hover:text-primary-500 disabled:opacity-50 disabled:hover:bg-transparent transition-all"
+            className="pagination-btn p-2"
             aria-label="Next Page"
           >
             <ChevronRightIcon className="w-5 h-5" />
