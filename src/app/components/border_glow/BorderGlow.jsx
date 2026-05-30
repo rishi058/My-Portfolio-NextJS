@@ -138,7 +138,7 @@ const BorderGlow = ({
       style={{
         '--card-bg': backgroundColor,
         '--edge-sensitivity': edgeSensitivity,
-        '--border-radius': `${borderRadius}px`,
+        '--border-radius': typeof borderRadius === 'number' ? `${borderRadius}px` : borderRadius,
         '--glow-padding': `${glowRadius}px`,
         '--cone-spread': coneSpread,
         '--fill-opacity': fillOpacity,

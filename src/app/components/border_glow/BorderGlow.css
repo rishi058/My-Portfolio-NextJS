@@ -42,14 +42,15 @@
   transition: opacity 0.75s ease-in-out;
 }
 
-/* Disable glow in light mode */
+/* Disable glow effects in non-dark themes */
 html:not(.dark) .border-glow-card::before,
 html:not(.dark) .border-glow-card::after,
 html:not(.dark) .border-glow-card > .edge-light {
   display: none !important;
 }
 
-html:not(.dark) .border-glow-card {
+/* Transparent border for all non-dark themes EXCEPT neo-brutalism (which uses hard borders) */
+html:not(.dark):not(.neo) .border-glow-card {
   border-color: transparent !important;
 }
 

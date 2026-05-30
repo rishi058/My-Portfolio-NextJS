@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import React from "react";
+import ThemeSelector from "./ThemeSelector";
 import CircleAnimationSwitch from "./switch/circleAnimatioSwitch";
 
 
@@ -16,11 +17,16 @@ const Navbar = () => {
         >
           Rishi&apos;s Portfolio
         </Link>
-        {/* Theme Toggle */}
-        <CircleAnimationSwitch size="1.75rem" /> 
+
+        {/* Theme controls — style selector + dark/light toggle */}
+        <div className="flex items-center gap-3">
+          <ThemeSelector />
+          <CircleAnimationSwitch size="1.75rem" />
+        </div>
       </div>
     </header>
   );
 };
 
 export default Navbar;
+

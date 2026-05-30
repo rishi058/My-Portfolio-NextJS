@@ -121,14 +121,14 @@ const AboutSection = () => {
         <div className="lg:col-span-5 flex flex-col items-center justify-center">
           <BorderGlow
             className="about-avatar-glow w-72 h-72 md:w-80 md:h-80 lg:w-[300px] lg:h-[300px]"
-            borderRadius={9999}
+            borderRadius="var(--avatar-radius)"
             animated
             backgroundColor="transparent"
             fillOpacity={0}
             colors={['#14b8a6', '#0ea5e9', '#3b82f6']}
           >
-            <div className="w-full h-full rounded-full overflow-hidden relative flex items-center justify-center">
-              {RiveComponent ? <RiveComponent className="w-full h-full object-contain" /> : <div className="w-full h-full animate-pulse" style={{ backgroundColor: 'var(--outline-variant)' }} />}
+            <div className="w-full h-full overflow-hidden relative flex items-center justify-center" style={{ borderRadius: 'var(--avatar-radius)' }}>
+              {RiveComponent ? <RiveComponent className="w-full h-full object-contain" style={{ borderRadius: 'var(--avatar-radius)' }} /> : <div className="w-full h-full animate-pulse" style={{ backgroundColor: 'var(--outline-variant)', borderRadius: 'var(--avatar-radius)' }} />}
             </div>
           </BorderGlow>
           <div className="mt-8 text-center space-y-2">
