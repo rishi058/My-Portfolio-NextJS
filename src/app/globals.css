@@ -2,26 +2,77 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    --background: #f8fafc; /* Light mode: soft off-white slate-50 */
+    --on-background: #0f172a; /* Slate-900 */
+    --surface: #ffffff; /* White card background */
+    --on-surface: #0f172a; /* Slate-900 */
+    --on-surface-variant: #64748b; /* Slate-500 secondary text */
+    --outline: #e2e8f0; /* Slate-200 borders */
+    --outline-variant: rgba(226, 232, 240, 0.5);
+    --tertiary: #0d9488; /* Teal-600 */
+    --github-color: #24292e;
+    --github-bg: rgba(36, 41, 46, 0.13);
+  }
+
+  .dark {
+    --background: #121212;
+    --on-background: #ffffff;
+    --surface: #181818;
+    --on-surface: #ffffff;
+    --on-surface-variant: #ADB7BE;
+    --outline: #33353F;
+    --outline-variant: rgba(51, 53, 63, 0.5);
+    --tertiary: #69fff8;
+    --github-color: #ffffff;
+    --github-bg: rgba(255, 255, 255, 0.13);
+  }
+
+  html {
+    background-color: var(--background);
+    color: var(--on-background);
+    min-height: 100%;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--on-background);
+    min-height: 100vh;
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+@layer utilities {
+  /* Custom scrollbar */
+  ::-webkit-scrollbar { width: 8px; height: 8px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--outline); border-radius: 4px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--on-surface-variant); }
 }
+
+/* ============================================
+   VIEW TRANSITION - Theme Switch Animation
+   ============================================ */
+
+/* Disable the default cross-fade animation */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+/* Keep the old view visible and static underneath */
+::view-transition-old(root) {
+  z-index: 1;
+}
+
+/* New view clips over the old one with circle animation */
+::view-transition-new(root) {
+  z-index: 9999;
+}
+
+/* Ensure the transition group covers the full viewport */
+::view-transition-group(root) {
+  pointer-events: none;
+}
+

@@ -1,0 +1,110 @@
+[
+  {
+    "id": 1,
+    "title": "Next Js Portfolio Website",
+    "description": "A responsive portfolio featuring dynamic animations to showcase a diverse range of projects.",
+    "image": "/images/projects/1.png",
+    "tag": ["Web"],
+    "gitUrl": "/",
+    "previewUrl": "/"
+  },
+  {
+    "id": 2,
+    "title": "Radio Player App",
+    "description": "Listen to Radio from all over world. It features Neumorphic UI & Hero animations",
+    "image": "/images/projects/2.png",
+    "tag": ["Featured", "Mobile"],
+    "gitUrl": "https://github.com/rishi058/Radio_Payer_Global_Groove",
+    "previewUrl": "https://play.google.com/store/apps/details?id=com.devwizards.global_groove"
+  },
+  {
+    "id": 3,
+    "title": "Notes Box",
+    "description": "A Notes taking App with visually appealing UI, with dark & vibrant color scheme & staggered grid view layout",
+    "image": "/images/projects/3.png",
+    "tag": ["Mobile"],
+    "gitUrl": "https://github.com/rishi058/Notes-Box",
+    "previewUrl": "https://github.com/rishi058/Notes-Box"
+  },
+  {
+    "id": 4,
+    "title": "Doctor Appointment App",
+    "description": "Implemented real-time appointment scheduling, automated notifications, and email updates, ensuring seamless communication between patients and healthcare providers.",
+    "image": "/images/projects/4.jpg",
+    "tag": ["Mobile"],
+    "gitUrl": "https://github.com/rishi058/Doctor-Appointment-Booking-App",
+    "previewUrl": "https://play.google.com/store/apps/details?id=com.devwizards.clinic"
+  },
+  {
+    "id": 5,
+    "title": "E-Commerce App",
+    "description": "Features Multiuser-roles, Google-O-Auth, Product Listing, Wishlist & Order product flow",
+    "image": "/images/projects/5.jpg",
+    "tag": ["Mobile"],
+    "gitUrl": "https://github.com/rishi058/E-Commerce",
+    "previewUrl": "/"
+  },
+  {
+    "id": 6,
+    "title": "Discussify Chat App",
+    "description": "Features Real time communication using Web Socket, User Authentication, Animated Dark Mode & Responsive UI",
+    "image": "/images/projects/6.png",
+    "tag": ["Web"],
+    "gitUrl": "https://github.com/rishi058/Discussify-Chat-App-TypeScript",
+    "previewUrl": "/"
+  },
+  {
+    "id": 7,
+    "title": "Notes App(Vite & React)",
+    "description": "Features CRUD functionality with MongoDB, JWT Based Authentication, Glassmorphic & Responsive UI with Particles.js background",
+    "image": "/images/projects/7.png",
+    "tag": ["Web"],
+    "gitUrl": "https://github.com/rishi058/-Vite-React-Notes-App",
+    "previewUrl": "/"
+  },
+  {
+    "id": 8,
+    "title": "Recursion Visualizer",
+    "description": "A powerful tool designed to help developers easily visualize and debug the recursion stack, enhancing understanding and efficiency in solving complex Recursive and Dynamic programming problems.",
+    "image": "/images/projects/8.png",
+    "tag": ["Featured", "Web"],
+    "gitUrl": "https://github.com/rishi058/Recursion_Visualizer",
+    "previewUrl": "https://recursion-visualizer-nu.vercel.app"
+  },
+  {
+    "id": 9,
+    "title": "SOFA AI",
+    "description": "Make karaoke Video by generating word-level timestamp for English or Hindi songs",
+    "image": "",
+    "tag": ["Featured", "General"],
+    "gitUrl": "https://github.com/rishi058/LLM-powered-lyrics-visualization-and-synchronization-service",
+    "previewUrl": "/"
+  },
+  {
+    "id": 10,
+    "title": "Media Downloader Telegram Bot",
+    "description": "Telegram Bot to download Terabox video from URL. No need of Terabox Premium. Only need cookies from ordinary accounts",
+    "image": "",
+    "tag": ["General"],
+    "gitUrl": "https://github.com/rishi058/TeraBox-Video-Downloader",
+    "previewUrl": "/"
+  }, 
+  {
+    "id": 11,
+    "title": "SysMon",
+    "description": "GUI to monitor backend resource consumption",
+    "image": "",
+    "tag": ["Web"],
+    "gitUrl": "https://github.com/rishi058/SysMon",
+    "previewUrl": "/"
+  },
+  {
+    "id": 12,
+    "title": "Elevator-Simulation",
+    "description": "Simulate Elevator(s) based on different Algorithms",
+    "image": "/images/projects/12.png",
+    "tag": ["Featured", "General"],
+    "gitUrl": "https://github.com/rishi058/Elevator-Simulation",
+    "previewUrl": "/"
+  }
+]
