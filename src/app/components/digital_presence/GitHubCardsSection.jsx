@@ -98,12 +98,12 @@ export default function GitHubCardsSection({ scale = '1rem' }) {
         <span className="github-section-title">My GitHub Stats</span>
       </div>
 
-      {/* Cards grid — width driven by child content, no external size imposed */}
+      {/* Cards grid — responsive: 1 col mobile, 2 col tablet, 4 col desktop */}
       <div
-        className="grid grid-cols-1 sm:grid-cols-[auto_auto_auto_auto] gap-[1.2em] justify-center w-fit max-w-full min-h-0"
+        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[1.2em] w-full max-w-full min-h-0 justify-items-center"
       >
         {/* Row 1: Profile Details (full width) — layout via wrapper, not className prop */}
-        <div className="col-span-1 sm:col-span-4 w-full flex justify-center">
+        <div className="col-span-1 sm:col-span-2 lg:col-span-4 w-full flex justify-center">
           {loading ? (
             <SkeletonCard scale={scale} />
           ) : errors.profile ? (
@@ -113,38 +113,42 @@ export default function GitHubCardsSection({ scale = '1rem' }) {
           )}
         </div>
 
-        {/* Row 2+3: Productive Time | Languages by Repo | Languages by Commit | Stats */}
-        {loading ? (
-          <>
-            <SkeletonCard scale={scale} />
-            <SkeletonCard scale={scale} />
-            <SkeletonCard scale={scale} />
-            <SkeletonCard scale={scale} />
-          </>
-        ) : (
-          <>
-            {errors.productive ? (
-              <ErrorCard title="Productive time unavailable" scale={scale} />
-            ) : (
-              <ProductiveTimeCard data={productiveTimeData} scale={scale} />
-            )}
-            {errors.repoLang ? (
-              <ErrorCard title="Language data unavailable" scale={scale} />
-            ) : (
-              <DonutChartCard title="Top Languages by Repo" data={repoLangData} scale={scale} />
-            )}
-            {errors.commitLang ? (
-              <ErrorCard title="Commit language unavailable" scale={scale} />
-            ) : (
-              <DonutChartCard title="Top Languages by Commit" data={commitLangData} scale={scale} />
-            )}
-            {errors.profile ? (
-              <ErrorCard title="Stats unavailable" scale={scale} />
-            ) : (
-              <StatsCard data={profileData} scale={scale} />
-            )}
-          </>
-        )}
+        {/* Row 2+3: Productive Time | Languages by Repo | Languages by Commit | Stats
+            On sm: flex-wrap centered so odd cards (e.g. 3) center naturally.
+            On lg: revert to individual grid cells via contents display. */}
+        <div className="col-span-1 sm:col-span-2 lg:col-span-4 flex flex-wrap justify-center gap-[1.2em]">
+          {loading ? (
+            <>
+              <SkeletonCard scale={scale} />
+              <SkeletonCard scale={scale} />
+              <SkeletonCard scale={scale} />
+              <SkeletonCard scale={scale} />
+            </>
+          ) : (
+            <>
+              {errors.productive ? (
+                <ErrorCard title="Productive time unavailable" scale={scale} />
+              ) : (
+                <ProductiveTimeCard data={productiveTimeData} scale={scale} />
+              )}
+              {errors.repoLang ? (
+                <ErrorCard title="Language data unavailable" scale={scale} />
+              ) : (
+                <DonutChartCard title="Top Languages by Repo" data={repoLangData} scale={scale} />
+              )}
+              {errors.commitLang ? (
+                <ErrorCard title="Commit language unavailable" scale={scale} />
+              ) : (
+                <DonutChartCard title="Top Languages by Commit" data={commitLangData} scale={scale} />
+              )}
+              {errors.profile ? (
+                <ErrorCard title="Stats unavailable" scale={scale} />
+              ) : (
+                <StatsCard data={profileData} scale={scale} />
+              )}
+            </>
+          )}
+        </div>
       </div>
 
       {/* Streak — outside the grid so it controls its own width independently */}

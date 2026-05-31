@@ -5,7 +5,13 @@ import Script from 'next/script'
 
 export const metadata = {
   title: "Rishi's Portfolio",
-  description: 'A Next.js Portfolio',
+  description: 'A Next.js Portfolio — Full-Stack Developer, UI/UX Designer & Agentic AI Engineer',
+}
+
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
 }
 
 import SplashCursor from './components/SplashCursor'

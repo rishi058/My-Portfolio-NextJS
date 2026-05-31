@@ -19,7 +19,7 @@ export default function ProductiveTimeCard({ data = [], scale = '1rem', classNam
 
   return (
     <div
-      className={`github-card ${className} inline-flex flex-col`}
+      className={`github-card ${className} inline-flex flex-col max-w-full`}
       style={{ fontSize: scale, width: '18em', height: '11em' }}
     >
       <h3 className="github-card-title flex items-center gap-[0.35em] flex-shrink-0">

@@ -114,13 +114,13 @@ const AboutSection = () => {
   };
 
   return (
-    <section className="py-8 h-full w-full flex items-center" id="about">
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-stretch max-w-7xl mx-auto w-full">
+    <section className="sm:py-4 h-full w-full flex items-center" id="about">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-16 items-stretch max-w-7xl mx-auto w-full">
 
-        {/* Left Side: Avatar & Intro */}
-        <div className="lg:col-span-5 flex flex-col items-center justify-center">
+        {/* Left: Avatar & Intro — hidden on xs, visible sm+ */}
+        <div className="hidden sm:flex lg:col-span-5 flex-col items-center justify-center">
           <BorderGlow
-            className="about-avatar-glow w-72 h-72 md:w-80 md:h-80 lg:w-[300px] lg:h-[300px]"
+            className="about-avatar-glow w-48 h-48 sm:w-64 sm:h-64 md:w-72 md:h-72 lg:w-[300px] lg:h-[300px]"
             borderRadius="var(--avatar-radius)"
             animated
             backgroundColor="transparent"
@@ -139,8 +139,8 @@ const AboutSection = () => {
         </div>
 
         {/* Right Side: About & Tabs */}
-        <div className="lg:col-span-7 text-left flex flex-col h-full justify-start mt-8 lg:mt-0">
-          <h2 className="section-heading mb-6 flex items-center gap-3">
+        <div className="lg:col-span-7 text-left flex flex-col h-full justify-start mt-0">
+          <h2 className="section-heading mb-4 sm:mb-6 flex items-center justify-center gap-2 sm:gap-3">
             <span className="section-heading-icon material-symbols-outlined text-4xl">person</span> 
             About Me
           </h2>
@@ -148,7 +148,7 @@ const AboutSection = () => {
             {ABOUT_ME}
           </p>
 
-          <div className="flex flex-row justify-start mt-10 gap-6 overflow-x-auto no-scrollbar">
+          <div className="flex flex-row justify-start mt-5 sm:mt-8 gap-4 sm:gap-6 overflow-x-auto no-scrollbar">
             <TabButton
               selectTab={() => handleTabChange("skills")}
               active={tab === "skills"}
@@ -169,7 +169,7 @@ const AboutSection = () => {
             </TabButton>
           </div>
 
-          <div className="tab-content mt-8 min-h-[300px]">
+          <div className="tab-content mt-5 sm:mt-8 min-h-[180px] sm:min-h-[260px]">
             <AnimatePresence mode="wait">
               <motion.div
                 key={tab}

@@ -900,3 +900,55 @@ body {
   font-size: var(--font-size-body-sm);
   line-height: var(--line-height-normal);
 }
+
+
+/* ═══════════════════════════════════════════════════════════════
+   11. RESPONSIVE OVERRIDES  (mobile-first, max-width guards)
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── Tablet  (≤ 768px) ────────────────────────────────────────── */
+@media (max-width: 768px) {
+  :root {
+    --font-size-hero:    32px;
+    --font-size-section: 26px;
+    --font-size-dp:      1.5rem;
+  }
+
+  .navbar-brand        { font-size: 0.9rem; }
+  .hero-visitor-text   { font-size: 1.25rem; }
+  .about-intro-heading { font-size: 1.375rem; }
+  .section-heading-icon { font-size: 1.75rem !important; }
+  .tab-label           { font-size: 0.95rem; }
+}
+
+/* ── Mobile  (≤ 480px) ────────────────────────────────────────── */
+@media (max-width: 480px) {
+  :root {
+    --font-size-hero:    26px;
+    --font-size-section: 22px;
+    --font-size-dp:      1.25rem;
+    --font-size-body:    15px;
+  }
+
+  .navbar-brand         { font-size: 0.85rem; }
+  .hero-visitor-text    { font-size: 1.1rem; }
+  .about-intro-heading  { font-size: 1.2rem; }
+  .section-heading-icon { font-size: 1.4rem !important; }
+  .section-heading      { gap: 0.35rem; }
+  .tab-label            { font-size: 0.85rem; }
+  .about-description    { font-size: 14px; }
+  .github-section-title { font-size: 13px; }
+}
+
+/* ── Small phones (≤ 375px) ───────────────────────────────────── */
+@media (max-width: 375px) {
+  :root {
+    --font-size-hero:    22px;
+    --font-size-section: 20px;
+    --font-size-dp:      1.1rem;
+  }
+
+  .navbar-brand      { font-size: 0.8rem; }
+  .hero-heading      { letter-spacing: -0.02em; }
+  .hero-visitor-text { font-size: 0.95rem; }
+}

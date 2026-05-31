@@ -23,7 +23,7 @@ export default function StreakCard({ data, scale = '1rem', className = '' }) {
 
   return (
     <div
-      className={`github-card ${className} inline-flex items-center justify-center gap-[1.5em] w-full md:w-fit`}
+      className={`github-card ${className} inline-flex flex-wrap items-center justify-center gap-[1.5em] w-full md:w-fit max-w-full`}
       style={{ fontSize: scale, height: '5em' }}
     >
       {/* Total Contributions */}

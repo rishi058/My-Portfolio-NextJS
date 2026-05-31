@@ -30,7 +30,7 @@ export default function DonutChartCard({ title, data = [], scale = '1rem', class
 
   return (
     <div
-      className={`github-card ${className} inline-flex flex-col`}
+      className={`github-card ${className} inline-flex flex-col max-w-full`}
       style={{ fontSize: scale, width: '18em', height: '11em' }}
     >
       <h3 className="github-card-title mb-[0.5em] flex-shrink-0">

@@ -28,7 +28,7 @@ export default function StatsCard({ data, scale = '1rem', className = '' }) {
 
   return (
     <div
-      className={`github-card ${className} inline-flex flex-col`}
+      className={`github-card ${className} inline-flex flex-col max-w-full`}
       style={{ fontSize: scale, width: '18em', height: '11em', padding: '0.75em 0.875em' }}
     >
       {/* Title */}

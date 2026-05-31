@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import GitHubCardsSection from './GitHubCardsSection';
 
 // ── Social links data ──────────────────────────────────────────────────────
@@ -102,51 +102,71 @@ function PlatformLink({ platform }) {
 
 // ── Main Section ──────────────────────────────────────────────────────────
 const DigitalPresenceSection = () => {
+  // Responsive font scale for GitHub cards
+  const [cardScale, setCardScale] = useState('0.9rem');
+  useEffect(() => {
+    const update = () => {
+      const w = window.innerWidth;
+      if (w < 480) setCardScale('0.72rem');
+      else if (w < 768) setCardScale('0.8rem');
+      else if (w < 1024) setCardScale('0.85rem');
+      else setCardScale('0.9rem');
+    };
+    update();
+    window.addEventListener('resize', update);
+    return () => window.removeEventListener('resize', update);
+  }, []);
+
   return (
     <section
       id="digital-presence"
-      className="w-full h-full flex flex-col justify-evenly items-center gap-6 py-4"
+      className="w-full h-full flex flex-col items-center justify-center py-4 sm:py-6"
     >
-      {/* Section heading */}
-      <div className="flex items-center justify-center gap-3 flex-shrink-0 w-full my-2">
-        <span className="dp-heading-icon material-symbols-outlined text-[32px]">public</span>
-        <h2 className="dp-heading"> 
-          Digital Presence
-        </h2>
-      </div>
+      {/* Single inner block — the whole group centers as one unit */}
+      <div className="flex flex-col items-center gap-4 sm:gap-5 w-full">
 
-      {/* Row 1: Socials & Coding Platforms */}
-      <div className="flex flex-col md:flex-row gap-8 md:gap-16 flex-shrink-0 w-full justify-center items-center">
-        {/* Socials */}
-        <div className="flex flex-col gap-3 items-center">
-          <h3 className="dp-subheading flex items-center gap-2">
-            <span className="material-symbols-outlined text-[16px]">group</span>
-            Socials
-          </h3>
-          <div className="flex flex-wrap justify-center gap-3">
-            {SOCIALS.map(s => (
-              <PlatformLink key={s.id} platform={s} />
-            ))}
+        {/* Section heading */}
+        <div className="flex items-center justify-center gap-3 w-full">
+          <span className="dp-heading-icon material-symbols-outlined text-[28px] sm:text-[32px]">public</span>
+          <h2 className="dp-heading">
+            Digital Presence
+          </h2>
+        </div>
+
+        {/* Row 1: Socials & Coding Platforms — side by side on sm+, stacked on mobile */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-8 md:gap-16 flex-shrink-0 w-full justify-items-center">
+          {/* Socials */}
+          <div className="flex flex-col gap-3 items-center">
+            <h3 className="dp-subheading flex items-center gap-2">
+              <span className="material-symbols-outlined text-[16px]">group</span>
+              Socials
+            </h3>
+            <div className="flex flex-wrap justify-center gap-3">
+              {SOCIALS.map(s => (
+                <PlatformLink key={s.id} platform={s} />
+              ))}
+            </div>
+          </div>
+
+          {/* Coding Platforms */}
+          <div className="flex flex-col gap-3 items-center">
+            <h3 className="dp-subheading flex items-center gap-2">
+              <span className="material-symbols-outlined text-[16px]">code</span>
+              Coding Platforms
+            </h3>
+            <div className="flex flex-wrap justify-center gap-3">
+              {CODING_PLATFORMS.map(p => (
+                <PlatformLink key={p.id} platform={p} />
+              ))}
+            </div>
           </div>
         </div>
 
-        {/* Coding Platforms */}
-        <div className="flex flex-col gap-3 items-center">
-          <h3 className="dp-subheading flex items-center gap-2">
-            <span className="material-symbols-outlined text-[16px]">code</span>
-            Coding Platforms
-          </h3>
-          <div className="flex flex-wrap justify-center gap-3">
-            {CODING_PLATFORMS.map(p => (
-              <PlatformLink key={p.id} platform={p} />
-            ))}
-          </div>
+        {/* ── Row 2: GitHub Cards ── */}
+        <div className="w-full overflow-x-auto flex justify-center">
+          <GitHubCardsSection scale={cardScale} />
         </div>
-      </div>
 
-      {/* ── Row 2: GitHub Cards ── */}
-      <div className="flex-1 min-h-0 flex items-center justify-center w-full">
-        <GitHubCardsSection />
       </div>
     </section>
   );

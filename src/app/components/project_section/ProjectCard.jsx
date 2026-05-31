@@ -9,7 +9,7 @@ const ProjectCard = ({ imgUrl, title, description, gitUrl, previewUrl }) => {
   return (
     <div className="project-card w-full group flex flex-col relative z-10 hover:z-20">
       <div
-        className="h-40 md:h-44 w-full relative overflow-hidden"
+        className="aspect-video w-full relative overflow-hidden"
         style={{ background: `url(${resolvedImg})`, backgroundSize: "cover", backgroundPosition: "center" }}
       >
         <div className="project-card-overlay flex items-center justify-center absolute inset-0">

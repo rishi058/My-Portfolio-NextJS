@@ -7,28 +7,61 @@ import Footer from "./components/Footer";
 
 export default function Home() {
   return (
-    <main className="flex h-screen overflow-hidden flex-col relative z-10">
+    <main className="flex flex-col relative z-10 h-screen-safe md:h-screen md:overflow-hidden">
       <Navbar />
+
+      {/* Mobile: natural scroll (content height). md+: full-viewport snap scroll */}
       <div
-        className="w-full h-[calc(100vh-3rem)] mt-12 overflow-y-auto snap-y snap-mandatory scroll-smooth"
+        className="w-full overflow-y-auto scroll-smooth md:h-[calc(100vh-3rem)] md:snap-y md:snap-mandatory"
+        style={{ marginTop: 'var(--navbar-h)' }}
       >
-        <div className="snap-start snap-always h-[calc(100vh-3rem)] w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop flex items-center justify-center">
+
+        {/* ── Hero ── */}
+        <div className="
+          w-full max-w-container-max mx-auto
+          px-margin-mobile md:px-margin-desktop
+          flex items-center justify-center
+          py-6 sm:py-8
+          md:py-0 md:h-[calc(100vh-3rem)] md:snap-start md:snap-always
+        ">
           <HeroSection />
         </div>
-        <div className="snap-start snap-always h-[calc(100vh-3rem)] w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop flex items-center justify-center">
+
+        {/* ── About ── */}
+        <div className="
+          w-full max-w-container-max mx-auto
+          px-margin-mobile md:px-margin-desktop
+          flex items-start md:items-center justify-center
+          py-5 sm:py-6
+          md:py-0 md:h-[calc(100vh-3rem)] md:snap-start md:snap-always
+        ">
           <AboutSection />
         </div>
-        <div className="snap-start snap-always h-[calc(100vh-3rem)] w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop flex items-center justify-center">
+
+        {/* ── Projects ── */}
+        <div className="
+          w-full max-w-container-max mx-auto
+          px-margin-mobile md:px-margin-desktop
+          flex items-start md:items-center justify-center
+          py-5 sm:py-6
+          md:py-0 md:h-[calc(100vh-3rem)] md:snap-start md:snap-always
+        ">
           <ProjectsSection />
         </div>
-        <div className="snap-start snap-always h-[calc(100vh-3rem)] w-full flex flex-col">
-          <div className="flex-1 w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop flex items-center justify-center">
+
+        {/* ── Digital Presence + Footer ── */}
+        <div className="
+          w-full flex flex-col
+          md:h-[calc(100vh-3rem)] md:snap-start md:snap-always
+        ">
+          <div className="flex-1 w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop flex items-center justify-center py-4 md:py-0">
             <DigitalPresenceSection />
           </div>
           <div className="footer-wrapper w-full">
             <Footer />
           </div>
         </div>
+
       </div>
     </main>
   );

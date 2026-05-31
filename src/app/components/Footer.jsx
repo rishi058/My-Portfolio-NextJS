@@ -2,19 +2,18 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <footer
-      className="footer mt-auto w-full"
-    >
-      <div className="max-w-container-max mx-auto w-full px-margin-mobile md:px-margin-desktop py-2 grid grid-cols-1 md:grid-cols-2 gap-8">
-        {/* 1st Column  */}
-        <div>
-          <p className="footer-text mb-1">Made with ❤️ by Rishi</p>
+    <footer className="footer mt-auto w-full">
+      <div className="max-w-container-max mx-auto w-full px-margin-mobile md:px-margin-desktop py-3">
+        {/* Stack on mobile, side-by-side on sm+ */}
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-1 sm:gap-4">
+          <p className="footer-text text-center sm:text-left">
+            Made with ❤️ by Rishi
+          </p>
+          <p className="footer-text text-center sm:text-right">
+            &copy; {new Date().getFullYear()} Rishi. All rights reserved.
+          </p>
         </div>
-        {/* 2nd Column  */}
-        <div className="md:text-right">
-           <p className="footer-text mb-1"> &copy; {new Date().getFullYear()} Rishi. All rights reserved.</p>
-          </div> 
-        </div>
+      </div>
     </footer>
   );
 };
