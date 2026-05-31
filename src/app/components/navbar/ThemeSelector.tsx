@@ -6,7 +6,7 @@ import { flushSync } from "react-dom";
    Types & constants
 ───────────────────────────────────────────────────────────── */
 
-type StyleId = "neon" | "neo" | "glass";
+type StyleId = "neon" | "neo" | "glass" | "neumorphic";
 
 interface StyleOption {
   id: StyleId;
@@ -17,6 +17,7 @@ const STYLES: StyleOption[] = [
   { id: "neon",  label: "Neon"          },
   { id: "neo",   label: "Neo-Brutalism" },
   { id: "glass", label: "Frosted Glass" },
+  { id: "neumorphic", label: "Neumorphic" },
 ];
 
 const STYLE_STORAGE_KEY = "sysmon-theme-style";
@@ -28,16 +29,17 @@ const STYLE_STORAGE_KEY = "sysmon-theme-style";
 function applyStyle(id: StyleId): void {
   const root = document.documentElement;
   // Clear all style classes first
-  root.classList.remove("neo", "glass");
+  root.classList.remove("neo", "glass", "neumorphic");
   if (id === "neo")   root.classList.add("neo");
   if (id === "glass") root.classList.add("glass");
+  if (id === "neumorphic") root.classList.add("neumorphic");
   localStorage.setItem(STYLE_STORAGE_KEY, id);
 }
 
 function getInitialStyle(): StyleId {
   if (typeof window === "undefined") return "neon";
   const stored = localStorage.getItem(STYLE_STORAGE_KEY);
-  if (stored === "neon" || stored === "neo" || stored === "glass") return stored;
+  if (stored === "neon" || stored === "neo" || stored === "glass" || stored === "neumorphic") return stored;
   return "neon";
 }
 
@@ -101,7 +103,7 @@ export default function ThemeSelector() {
   }, [isOpen]);
 
   /* Animated style transition */
-  const transition = useCallback(async (newId: StyleId) => {
+  const transition = useCallback(async (newId: StyleId, direction: "forward" | "backward" = "forward") => {
     const applyFn = () => {
       setStyle(newId);
       applyStyle(newId);
@@ -121,16 +123,19 @@ export default function ThemeSelector() {
       flushSync(applyFn);
     }).ready;
 
-    const { top, left, width, height } = el.getBoundingClientRect();
-    const x = left + width / 2;
-    const y = top + height / 2;
-    const right  = window.innerWidth  - left;
-    const bottom = window.innerHeight - top;
-    const maxRadius = Math.hypot(Math.max(left, right), Math.max(top, bottom));
+    const clipPathForward = [
+      "polygon(-50% 0%, -10% 0%, -30% 100%, -50% 100%)",
+      "polygon(-50% 0%, 130% 0%, 110% 100%, -50% 100%)"
+    ];
+
+    const clipPathBackward = [
+      "polygon(130% 0%, 150% 0%, 150% 100%, 110% 100%)",
+      "polygon(-30% 0%, 150% 0%, 150% 100%, -50% 100%)"
+    ];
 
     document.documentElement.animate(
-      { clipPath: [`circle(0px at ${x}px ${y}px)`, `circle(${maxRadius}px at ${x}px ${y}px)`] },
-      { duration: 800, easing: "ease-in-out", pseudoElement: "::view-transition-new(root)" }
+      { clipPath: direction === "backward" ? clipPathBackward : clipPathForward },
+      { duration: 1200, easing: "ease-in-out", pseudoElement: "::view-transition-new(root)" }
     );
   }, []);
 
@@ -140,18 +145,20 @@ export default function ThemeSelector() {
   const handlePrev = () => {
     setIsOpen(false);
     const prev = STYLES[(currentIndex - 1 + STYLES.length) % STYLES.length];
-    transition(prev.id);
+    transition(prev.id, "backward");
   };
 
   const handleNext = () => {
     setIsOpen(false);
     const next = STYLES[(currentIndex + 1) % STYLES.length];
-    transition(next.id);
+    transition(next.id, "forward");
   };
 
   const handleSelect = (id: StyleId) => {
     setIsOpen(false);
-    transition(id);
+    const newIndex = STYLES.findIndex((s) => s.id === id);
+    const dir = newIndex < currentIndex ? "backward" : "forward";
+    transition(id, dir);
   };
 
   /* SSR placeholder */

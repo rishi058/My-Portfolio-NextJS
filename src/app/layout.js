@@ -2,6 +2,7 @@ import './globals.css'
 import './styles/neon.css'
 import './styles/neo-brutalism.css'
 import './styles/frosted-glass.css'
+import './styles/neumorphic.css'
 import Script from 'next/script'
 
 export const metadata = {
@@ -29,7 +30,7 @@ export default function RootLayout({ children }) {
               (function() {
                 try {
                   var root = document.documentElement;
-                  root.classList.remove('dark', 'neo', 'glass');
+                  root.classList.remove('dark', 'neo', 'glass', 'neumorphic');
 
                   /* ── Migrate old 4-state values if present ── */
                   var mode  = localStorage.getItem('sysmon-theme');
@@ -40,9 +41,10 @@ export default function RootLayout({ children }) {
                   if (mode === 'neon-dark')  { mode = 'dark';  localStorage.setItem('sysmon-theme', 'dark'); }
                   if (mode === 'neon-light') { mode = 'light'; localStorage.setItem('sysmon-theme', 'light'); }
 
-                  /* ── Apply style (neon vs neo vs glass) ── */
+                  /* ── Apply style (neon vs neo vs glass vs neumorphic) ── */
                   if (style === 'neo') root.classList.add('neo');
                   if (style === 'glass') root.classList.add('glass');
+                  if (style === 'neumorphic') root.classList.add('neumorphic');
 
                   /* ── Apply dark / light mode ── */
                   var systemPrefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;

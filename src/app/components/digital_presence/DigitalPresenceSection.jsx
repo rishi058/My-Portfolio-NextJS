@@ -126,12 +126,10 @@ const DigitalPresenceSection = () => {
       <div className="flex flex-col items-center gap-4 sm:gap-5 w-full">
 
         {/* Section heading */}
-        <div className="flex items-center justify-center gap-3 w-full">
+        <h2 className="section-heading flex items-center justify-center gap-2 sm:gap-3 mb-0">
           <span className="dp-heading-icon material-symbols-outlined text-[28px] sm:text-[32px]">public</span>
-          <h2 className="dp-heading">
-            Digital Presence
-          </h2>
-        </div>
+          Digital Presence
+        </h2>
 
         {/* Row 1: Socials & Coding Platforms — side by side on sm+, stacked on mobile */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-8 md:gap-16 flex-shrink-0 w-full justify-items-center">
@@ -163,7 +161,7 @@ const DigitalPresenceSection = () => {
         </div>
 
         {/* ── Row 2: GitHub Cards ── */}
-        <div className="w-full overflow-x-auto flex justify-center">
+        <div className="w-full overflow-x-auto flex justify-center p-6 -mx-6">
           <GitHubCardsSection scale={cardScale} />
         </div>
 
