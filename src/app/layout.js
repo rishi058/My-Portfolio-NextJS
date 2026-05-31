@@ -1,6 +1,7 @@
 import './globals.css'
 import './styles/neon.css'
 import './styles/neo-brutalism.css'
+import './styles/frosted-glass.css'
 import Script from 'next/script'
 
 export const metadata = {
@@ -19,7 +20,7 @@ import Silk from './components/Silk'
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className="dark scroll-smooth">
+    <html lang="en" className="dark scroll-smooth" suppressHydrationWarning>
       <head>
         <Script src="https://cubism.live2d.com/sdk-web/cubismcore/live2dcubismcore.min.js" strategy="afterInteractive" />
         <script
@@ -28,7 +29,7 @@ export default function RootLayout({ children }) {
               (function() {
                 try {
                   var root = document.documentElement;
-                  root.classList.remove('dark', 'neo');
+                  root.classList.remove('dark', 'neo', 'glass');
 
                   /* ── Migrate old 4-state values if present ── */
                   var mode  = localStorage.getItem('sysmon-theme');
@@ -39,8 +40,9 @@ export default function RootLayout({ children }) {
                   if (mode === 'neon-dark')  { mode = 'dark';  localStorage.setItem('sysmon-theme', 'dark'); }
                   if (mode === 'neon-light') { mode = 'light'; localStorage.setItem('sysmon-theme', 'light'); }
 
-                  /* ── Apply style (neon vs neo) ── */
+                  /* ── Apply style (neon vs neo vs glass) ── */
                   if (style === 'neo') root.classList.add('neo');
+                  if (style === 'glass') root.classList.add('glass');
 
                   /* ── Apply dark / light mode ── */
                   var systemPrefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;

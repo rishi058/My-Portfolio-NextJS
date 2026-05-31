@@ -47,7 +47,7 @@ const Stepper = ({ items }) => {
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5, delay: index * 0.15 }}
-          className="mb-8 ml-6 relative"
+          className={`${index === items.length - 1 ? "mb-0" : "mb-8"} ml-6 relative`}
         >
           {/* Timeline Dot — centered on the line: ml-6=1.5rem, dot w-3=0.75rem → offset=1.5-0.375=1.125rem */}
           <span className="stepper-dot absolute w-3 h-3 -left-[1.800rem] top-1"></span>
@@ -114,7 +114,7 @@ const AboutSection = () => {
   };
 
   return (
-    <section className="sm:py-4 h-full w-full flex items-center" id="about">
+    <section className="sm:pt-4 sm:pb-0 h-full w-full flex items-center" id="about">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-16 items-stretch max-w-7xl mx-auto w-full">
 
         {/* Left: Avatar & Intro — hidden on xs, visible sm+ */}
@@ -144,9 +144,11 @@ const AboutSection = () => {
             <span className="section-heading-icon material-symbols-outlined text-4xl">person</span> 
             About Me
           </h2>
-          <p className="about-description">
-            {ABOUT_ME}
-          </p>
+          <div className="about-description-box">
+            <p className="about-description">
+              {ABOUT_ME}
+            </p>
+          </div>
 
           <div className="flex flex-row justify-start mt-5 sm:mt-8 gap-4 sm:gap-6 overflow-x-auto no-scrollbar">
             <TabButton

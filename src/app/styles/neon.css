@@ -1,6 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap');
-
 /* ═══════════════════════════════════════════════════════════════
    NEON THEME
    ───────────────────────────────────────────────────────────────
@@ -243,7 +240,7 @@ body {
    4. NAVBAR
    ═══════════════════════════════════════════════════════════════ */
 
-.navbar {
+html:not(.glass):not(.neo) .navbar {
   background-color: var(--background);
   border-bottom: 1px solid var(--navbar-border-color);
   box-shadow: var(--navbar-shadow);
@@ -375,6 +372,14 @@ body {
   background-image: linear-gradient(to right, var(--primary-400), var(--secondary-500));
   -webkit-background-clip: text;
   background-clip: text;
+}
+
+.about-description-box {
+  background-color: var(--surface);
+  border: 1px solid var(--outline);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  box-shadow: var(--card-shadow);
 }
 
 .about-description {
@@ -936,6 +941,7 @@ body {
   .section-heading-icon { font-size: 1.4rem !important; }
   .section-heading      { gap: 0.35rem; }
   .tab-label            { font-size: 0.85rem; }
+  .about-description-box { padding: 1rem; }
   .about-description    { font-size: 14px; }
   .github-section-title { font-size: 13px; }
 }

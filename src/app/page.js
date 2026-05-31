@@ -12,8 +12,7 @@ export default function Home() {
 
       {/* Mobile: natural scroll (content height). md+: full-viewport snap scroll */}
       <div
-        className="w-full overflow-y-auto scroll-smooth md:h-[calc(100vh-3rem)] md:snap-y md:snap-mandatory"
-        style={{ marginTop: 'var(--navbar-h)' }}
+        className="w-full h-full overflow-y-auto scroll-smooth md:snap-y md:snap-mandatory"
       >
 
         {/* ── Hero ── */}
@@ -21,8 +20,8 @@ export default function Home() {
           w-full max-w-container-max mx-auto
           px-margin-mobile md:px-margin-desktop
           flex items-center justify-center
-          py-6 sm:py-8
-          md:py-0 md:h-[calc(100vh-3rem)] md:snap-start md:snap-always
+          pt-[calc(var(--navbar-h)+1.5rem)] pb-6 sm:pb-8
+          md:py-0 md:h-screen md:snap-start md:snap-always
         ">
           <HeroSection />
         </div>
@@ -33,7 +32,7 @@ export default function Home() {
           px-margin-mobile md:px-margin-desktop
           flex items-start md:items-center justify-center
           py-5 sm:py-6
-          md:py-0 md:h-[calc(100vh-3rem)] md:snap-start md:snap-always
+          md:py-0 md:h-screen md:snap-start md:snap-always
         ">
           <AboutSection />
         </div>
@@ -44,7 +43,7 @@ export default function Home() {
           px-margin-mobile md:px-margin-desktop
           flex items-start md:items-center justify-center
           py-5 sm:py-6
-          md:py-0 md:h-[calc(100vh-3rem)] md:snap-start md:snap-always
+          md:py-0 md:h-screen md:snap-start md:snap-always
         ">
           <ProjectsSection />
         </div>
@@ -52,7 +51,7 @@ export default function Home() {
         {/* ── Digital Presence + Footer ── */}
         <div className="
           w-full flex flex-col
-          md:h-[calc(100vh-3rem)] md:snap-start md:snap-always
+          md:h-screen md:snap-start md:snap-always
         ">
           <div className="flex-1 w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop flex items-center justify-center py-4 md:py-0">
             <DigitalPresenceSection />

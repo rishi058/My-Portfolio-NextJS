@@ -32,6 +32,7 @@ const HeroSection = () => {
 
       const PIXI = await import("pixi.js");
       window.PIXI = PIXI;
+      PIXI.utils.skipHello();
       const { Live2DModel } = await import("pixi-live2d-display/cubism4");
 
       app = new PIXI.Application({
@@ -268,7 +269,7 @@ const HeroSection = () => {
 
       {/* You are my Xth Visitor */}
       <div className="mt-1 sm:mt-0">
-        <p className="hero-visitor-text flex flex-wrap items-center justify-center text-center gap-x-2">
+        <div className="hero-visitor-text flex flex-wrap items-center justify-center text-center gap-x-2">
           <span>You are my</span>
           <span className="hero-visitor-count inline-flex items-baseline">
             <AnimatedNumbers
@@ -286,7 +287,7 @@ const HeroSection = () => {
             <sup className="align-super ml-0.5">th</sup>
           </span>
           <span>visitor</span>
-        </p>
+        </div>
       </div>
 
     </section>

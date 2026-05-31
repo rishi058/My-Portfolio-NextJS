@@ -6,7 +6,7 @@ import { flushSync } from "react-dom";
    Types & constants
 ───────────────────────────────────────────────────────────── */
 
-type StyleId = "neon" | "neo";
+type StyleId = "neon" | "neo" | "glass";
 
 interface StyleOption {
   id: StyleId;
@@ -14,8 +14,9 @@ interface StyleOption {
 }
 
 const STYLES: StyleOption[] = [
-  { id: "neon", label: "Neon"          },
-  { id: "neo",  label: "Neo-Brutalism" },
+  { id: "neon",  label: "Neon"          },
+  { id: "neo",   label: "Neo-Brutalism" },
+  { id: "glass", label: "Frosted Glass" },
 ];
 
 const STYLE_STORAGE_KEY = "sysmon-theme-style";
@@ -26,18 +27,17 @@ const STYLE_STORAGE_KEY = "sysmon-theme-style";
 
 function applyStyle(id: StyleId): void {
   const root = document.documentElement;
-  if (id === "neo") {
-    root.classList.add("neo");
-  } else {
-    root.classList.remove("neo");
-  }
+  // Clear all style classes first
+  root.classList.remove("neo", "glass");
+  if (id === "neo")   root.classList.add("neo");
+  if (id === "glass") root.classList.add("glass");
   localStorage.setItem(STYLE_STORAGE_KEY, id);
 }
 
 function getInitialStyle(): StyleId {
   if (typeof window === "undefined") return "neon";
   const stored = localStorage.getItem(STYLE_STORAGE_KEY);
-  if (stored === "neon" || stored === "neo") return stored;
+  if (stored === "neon" || stored === "neo" || stored === "glass") return stored;
   return "neon";
 }
 
