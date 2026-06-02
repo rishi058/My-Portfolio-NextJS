@@ -3,6 +3,7 @@ import './styles/neon.css'
 import './styles/neo-brutalism.css'
 import './styles/frosted-glass.css'
 import './styles/neumorphic.css'
+import './styles/cyberpunk.css'
 import Script from 'next/script'
 
 export const metadata = {
@@ -30,7 +31,7 @@ export default function RootLayout({ children }) {
               (function() {
                 try {
                   var root = document.documentElement;
-                  root.classList.remove('dark', 'neo', 'glass', 'neumorphic');
+                  root.classList.remove('dark', 'neo', 'glass', 'neumorphic', 'cyberpunk');
 
                   /* ── Migrate old 4-state values if present ── */
                   var mode  = localStorage.getItem('sysmon-theme');
@@ -41,10 +42,11 @@ export default function RootLayout({ children }) {
                   if (mode === 'neon-dark')  { mode = 'dark';  localStorage.setItem('sysmon-theme', 'dark'); }
                   if (mode === 'neon-light') { mode = 'light'; localStorage.setItem('sysmon-theme', 'light'); }
 
-                  /* ── Apply style (neon vs neo vs glass vs neumorphic) ── */
+                  /* ── Apply style (neon vs neo vs glass vs neumorphic vs cyberpunk) ── */
                   if (style === 'neo') root.classList.add('neo');
                   if (style === 'glass') root.classList.add('glass');
                   if (style === 'neumorphic') root.classList.add('neumorphic');
+                  if (style === 'cyberpunk') root.classList.add('cyberpunk');
 
                   /* ── Apply dark / light mode ── */
                   var systemPrefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
@@ -65,7 +67,7 @@ export default function RootLayout({ children }) {
           <Silk
             speed={3}
             scale={.5}
-            color="#7B7481"
+            color={{ default: '#7B7481', cyberpunk: '#360e0e' }}
             noiseIntensity={1.5}
             rotation={0}
           />

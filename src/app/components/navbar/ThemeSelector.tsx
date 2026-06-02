@@ -6,7 +6,7 @@ import { flushSync } from "react-dom";
    Types & constants
 ───────────────────────────────────────────────────────────── */
 
-type StyleId = "neon" | "neo" | "glass" | "neumorphic";
+type StyleId = "neon" | "neo" | "glass" | "neumorphic" | "cyberpunk";
 
 interface StyleOption {
   id: StyleId;
@@ -14,10 +14,11 @@ interface StyleOption {
 }
 
 const STYLES: StyleOption[] = [
-  { id: "neon",  label: "Neon"          },
-  { id: "neo",   label: "Neo-Brutalism" },
-  { id: "glass", label: "Frosted Glass" },
-  { id: "neumorphic", label: "Neumorphic" },
+  { id: "neon",       label: "Neon"          },
+  { id: "neo",        label: "Neo-Brutalism" },
+  { id: "glass",      label: "Frosted Glass" },
+  { id: "neumorphic", label: "Neumorphic"    },
+  { id: "cyberpunk",  label: "Cyberpunk"     },
 ];
 
 const STYLE_STORAGE_KEY = "sysmon-theme-style";
@@ -29,17 +30,18 @@ const STYLE_STORAGE_KEY = "sysmon-theme-style";
 function applyStyle(id: StyleId): void {
   const root = document.documentElement;
   // Clear all style classes first
-  root.classList.remove("neo", "glass", "neumorphic");
-  if (id === "neo")   root.classList.add("neo");
-  if (id === "glass") root.classList.add("glass");
+  root.classList.remove("neo", "glass", "neumorphic", "cyberpunk");
+  if (id === "neo")        root.classList.add("neo");
+  if (id === "glass")      root.classList.add("glass");
   if (id === "neumorphic") root.classList.add("neumorphic");
+  if (id === "cyberpunk")  root.classList.add("cyberpunk");
   localStorage.setItem(STYLE_STORAGE_KEY, id);
 }
 
 function getInitialStyle(): StyleId {
   if (typeof window === "undefined") return "neon";
   const stored = localStorage.getItem(STYLE_STORAGE_KEY);
-  if (stored === "neon" || stored === "neo" || stored === "glass" || stored === "neumorphic") return stored;
+  if (stored === "neon" || stored === "neo" || stored === "glass" || stored === "neumorphic" || stored === "cyberpunk") return stored;
   return "neon";
 }
 

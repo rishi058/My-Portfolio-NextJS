@@ -6,7 +6,7 @@ const ProjectTag = ({ name, onClick, isSelected }) => {
       className={`project-tag ${isSelected ? 'project-tag--selected' : ''} px-5 py-2`}
       onClick={() => onClick(name)}
     >
-      {name}
+      <span className="project-tag-text">{name}</span>
     </button>
   );
 };

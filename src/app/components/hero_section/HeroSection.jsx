@@ -151,6 +151,7 @@ const HeroSection = () => {
               wrapper="span"
               speed={50}
               repeat={Infinity}
+              className="hero-type-animation"
             />
           </h1>
           <p className="hero-description mb-5 sm:mb-8 max-w-2xl">
@@ -235,6 +236,7 @@ const HeroSection = () => {
             wrapper="span"
             speed={50}
             repeat={Infinity}
+            className="hero-type-animation"
           />
         </h1>
         <p className="hero-description mb-4 max-w-2xl mx-auto">

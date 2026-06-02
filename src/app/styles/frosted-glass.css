@@ -333,20 +333,33 @@ html.glass {
 
 /* Full-page background image — fixed, covers all sections */
 html.glass body {
-    background-color: #d4ecf0;
-    /* fallback colour matching light bg sky */
-    background-image: var(--glass-bg-image);
-    background-size: cover;
-    background-position: center center;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
+    background-color: transparent;
     color: var(--on-background);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
 
+/* Background image is placed in a pseudo-element so we can zoom it by 25% without zooming the body */
+html.glass body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background-color: #d4ecf0;
+    /* fallback colour matching light bg sky */
+    background-image: var(--glass-bg-image);
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    transform: scale(1.75); 
+}
+
 html.glass.dark body {
+    background-color: transparent;
+}
+
+html.glass.dark body::after {
     background-color: #07142e;
     /* fallback matching dark bg navy */
     background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), var(--glass-bg-image);

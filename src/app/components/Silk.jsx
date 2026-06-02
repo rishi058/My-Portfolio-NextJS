@@ -1,7 +1,7 @@
 "use client";
 /* eslint-disable react/no-unknown-property */
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { forwardRef, useRef, useMemo, useLayoutEffect } from 'react';
+import { forwardRef, useRef, useMemo, useLayoutEffect, useState, useEffect } from 'react';
 import { Color } from 'three';
 
 const hexToNormalizedRGB = hex => {
@@ -97,17 +97,48 @@ SilkPlane.displayName = 'SilkPlane';
 const Silk = ({ speed = 5, scale = 1, color = '#7B7481', noiseIntensity = 1.5, rotation = 0 }) => {
   const meshRef = useRef();
 
+  const isColorObj = typeof color === 'object' && color !== null;
+  const initialColor = isColorObj ? (color.default || '#7B7481') : color;
+  const [activeColor, setActiveColor] = useState(initialColor);
+
+  useEffect(() => {
+    if (!isColorObj) {
+      setActiveColor(color);
+      return;
+    }
+
+    const updateColor = () => {
+      const root = document.documentElement;
+      if (root.classList.contains('cyberpunk') && color.cyberpunk) {
+        setActiveColor(color.cyberpunk);
+      } else {
+        setActiveColor(color.default || '#7B7481');
+      }
+    };
+
+    updateColor();
+
+    const observer = new MutationObserver(updateColor);
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+
+    return () => observer.disconnect();
+  }, [color, isColorObj]);
+
   const uniforms = useMemo(
     () => ({
       uSpeed: { value: speed },
       uScale: { value: scale },
       uNoiseIntensity: { value: noiseIntensity },
-      uColor: { value: new Color(...hexToNormalizedRGB(color)) },
+      uColor: { value: new Color(...hexToNormalizedRGB(initialColor)) },
       uRotation: { value: rotation },
       uTime: { value: 0 }
     }),
-    [speed, scale, noiseIntensity, color, rotation]
+    [speed, scale, noiseIntensity, initialColor, rotation]
   );
+
+  useEffect(() => {
+    uniforms.uColor.value.set(...hexToNormalizedRGB(activeColor));
+  }, [activeColor, uniforms]);
 
   return (
     <Canvas dpr={[1, 2]} frameloop="always" style={{ pointerEvents: 'none' }}>

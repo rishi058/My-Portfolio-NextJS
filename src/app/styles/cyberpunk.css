@@ -1,0 +1,1745 @@
+/* ═══════════════════════════════════════════════════════════════
+   CYBERPUNK THEME
+   ───────────────────────────────────────────────────────────────
+   Activated by:  html.cyberpunk        → Cyberpunk Light
+                  html.cyberpunk.dark   → Cyberpunk Dark (Red & Black)
+   ───────────────────────────────────────────────────────────────
+   Palette: Red (#FF003C) + Cyan (#22F6E3)  — Critical Systems HUD
+   Philosophy: Sharp, technical, readable. Angular HUD geometry,
+   1-2px borders, compact uppercase labels, budgeted glow.
+   Fonts: Orbitron (display/HUD) · Rajdhani (UI copy) · JetBrains Mono
+   ═══════════════════════════════════════════════════════════════ */
+
+
+/* ══════════════════════════════════════════════════════════════
+   1. CYBERPUNK LIGHT TOKENS
+   ══════════════════════════════════════════════════════════════ */
+
+html.cyberpunk {
+  /* ── Surfaces ── */
+  --background: #F7F8FC;
+  --on-background: #101722;
+  --surface: #FFFFFF;
+  --on-surface: #101722;
+  --on-surface-variant: #536071;
+  --outline: #263241;
+  --outline-variant: rgba(38, 50, 65, 0.18);
+  --outline-subtle: rgba(38, 50, 65, 0.09);
+  --inner-outline: transparent;
+  --inner-outline-yellow: transparent;
+
+  /* ── Cyberpunk Palette: Red + Cyan ── */
+  --cp-primary: #FF003C;
+  --cp-secondary: #22F6E3;
+  --cp-danger: #FF003C;
+  --cp-on-accent: #F7F8FC;
+
+  /* ── Primary scale (red) ── */
+  --primary-300: #FF4D70;
+  --primary-400: #FF1A4D;
+  --primary-500: #FF003C;
+  --primary-600: #CC0030;
+
+  /* ── Primary text ── */
+  --primary-text: #CC0030;
+
+  /* ── Secondary (cyan) ── */
+  --secondary-500: #22F6E3;
+
+  /* ── Tertiary ── */
+  --tertiary: #263241;
+
+  /* ── GitHub ── */
+  --github-color: #263241;
+  --github-bg: rgba(38, 50, 65, 0.08);
+
+  /* ── Accents ── */
+  --streak-accent: #FF003C;
+  --chart-accent: #22F6E3;
+
+  /* ── Glows: OFF in light mode ── */
+  --glow-color-1: transparent;
+  --glow-color-2: transparent;
+  --glow-color-3: transparent;
+
+  /* ── Selection ── */
+  --selection-bg: #FF003C;
+  --selection-text: #FFFFFF;
+
+  /* ── Surface states ── */
+  --hover-surface-tint: rgba(255, 0, 60, 0.05);
+  --skeleton-bg: rgba(38, 50, 65, 0.1);
+  --skeleton-bg-dim: rgba(38, 50, 65, 0.05);
+
+  /* ── Silk: off in cyberpunk ── */
+  --silk-color: transparent;
+  --silk-opacity: 0;
+
+  /* ── Card geometry ── */
+  --card-shadow: 4px 4px 0 var(--outline);
+  --card-hover-border-color: #FF003C;
+  --card-hover-glow: 4px 4px 0 #FF003C;
+  --card-active-glow: 2px 2px 0 var(--outline);
+  --card-hover-scale: 1;
+  --card-radius: 2px;
+  --btn-radius: 2px;
+  --chip-radius: 2px;
+  --tag-radius: 2px;
+  --platform-radius: 2px;
+  --avatar-radius: 2px;
+
+  /* ── Notch geometry ── */
+  --cp-notch: 12px;
+  --cp-notch-sm: 8px;
+  --cp-avatar-notch: 32px;
+  --cp-border-width: 1px;
+  --cp-border-width-active: 2px;
+
+  /* ── Gradients ── */
+  --cp-gradient-action: linear-gradient(90deg, #FF003C 0%, #22F6E3 100%);
+  --cp-gradient-selected: linear-gradient(90deg, #FF003C 0%, color-mix(in srgb, #FF003C 70%, #22F6E3) 100%);
+  --cp-gradient-panel: linear-gradient(135deg, color-mix(in srgb, #22F6E3 8%, transparent) 0%, transparent 42%), #FFFFFF;
+  --cp-gradient-border: linear-gradient(90deg, #FF003C, transparent 48%, #22F6E3);
+
+  /* ── Shadows (light: crisp, no blur) ── */
+  --cp-shadow-crisp: 4px 4px 0 #263241;
+  --cp-glow-primary: none;
+  --cp-glow-secondary: none;
+
+  /* ── Navbar ── */
+  --navbar-border-color: #263241;
+  --navbar-shadow: none;
+
+  /* ── Hero ── */
+  --hero-cta-glow: none;
+
+  /* ── Stepper ── */
+  --stepper-line-color: var(--cp-primary);
+  --stepper-shimmer: linear-gradient(to bottom, transparent 0%, #22F6E3 50%, transparent 100%);
+  --stepper-dot-glow: none;
+
+  /* ── Skill Chips ── */
+  --skill-chip-bg: rgba(255, 0, 60, 0.08);
+  --skill-chip-border: #FF003C;
+  --skill-chip-bg-hover: #FF003C;
+
+  /* ── Project tags ── */
+  --tag-selected-glow: none;
+
+  /* ── Stats ── */
+  --stats-value-color: #101722;
+  --stats-title-color: #101722;
+  --stats-watermark-opacity: 0.05;
+
+  /* ── About avatar ── */
+  --avatar-dark-glow: none;
+
+  /* ── Footer ── */
+  --footer-border-color: #263241;
+
+  /* ── Fonts ── */
+  --font-sans: 'Rajdhani', system-ui, sans-serif;
+  --font-display: 'Orbitron', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* ── Font sizes ── */
+  --font-size-hero: 38px;
+  --font-size-hero-md: 54px;
+  --font-size-section: 32px;
+  --font-size-dp: 1.875rem;
+  --font-size-dp-md: 2.25rem;
+  --font-size-subheading: 0.875rem;
+  --font-size-body: 16px;
+  --font-size-body-sm: 14px;
+  --font-size-caption: 12px;
+  --font-size-caption-sm: 10px;
+
+  --line-height-tight: 1.2;
+  --line-height-snug: 1.25;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.625;
+
+  --letter-spacing-tight: -0.02em;
+  --letter-spacing-normal: 0em;
+  --letter-spacing-wide: 0.08em;
+}
+
+
+/* ══════════════════════════════════════════════════════════════
+   2. CYBERPUNK DARK TOKENS  (Red & Black HUD)
+   ══════════════════════════════════════════════════════════════ */
+
+html.cyberpunk.dark {
+  /* ── Surfaces: deep black panels ── */
+  --background: #070A0F;
+  --on-background: #EAFBFF;
+  --surface: #0C111A;
+  --on-surface: #EAFBFF;
+  --on-surface-variant: #8EA4B8;
+  --outline: #263241;
+  --outline-variant: rgba(38, 50, 65, 0.35);
+  --outline-subtle: rgba(38, 50, 65, 0.18);
+  --inner-outline: rgba(234, 251, 255, 0.07);
+  --inner-outline-yellow: rgba(255, 0, 60, 0.25);
+  --silk-opacity: 0.5; 
+
+  /* ── Primary text → red accent ── */
+  --primary-text: #FF4D70;
+
+  /* ── Tertiary ── */
+  --tertiary: #22F6E3;
+
+  /* ── GitHub ── */
+  --github-color: #EAFBFF;
+  --github-bg: rgba(234, 251, 255, 0.07);
+
+  /* ── Selection ── */
+  --selection-bg: #FF003C;
+  --selection-text: #EAFBFF;
+
+  /* ── Surface states ── */
+  --hover-surface-tint: rgba(255, 0, 60, 0.08);
+  --skeleton-bg: rgba(234, 251, 255, 0.08);
+  --skeleton-bg-dim: rgba(234, 251, 255, 0.04);
+
+  /* ── Card geometry (sharper in dark) ── */
+  --card-shadow: 0 0 0 1px #263241, 4px 4px 0 #FF003C;
+  --card-hover-border-color: #FF003C;
+  --card-hover-glow: 0 0 0 1px #FF003C, 0 0 20px color-mix(in srgb, #FF003C 35%, transparent);
+  --card-active-glow: 0 0 0 1px #263241;
+  --card-radius: 2px;
+  --btn-radius: 2px;
+  --chip-radius: 2px;
+  --tag-radius: 2px;
+  --platform-radius: 2px;
+  --avatar-radius: 2px;
+
+  /* ── Glows: budgeted — max 2 per viewport ── */
+  --cp-glow-primary: 0 0 18px color-mix(in srgb, #FF003C 45%, transparent);
+  --cp-glow-secondary: 0 0 16px color-mix(in srgb, #22F6E3 42%, transparent);
+
+  /* ── Gradients ── */
+  --cp-gradient-action: linear-gradient(90deg, #FF003C 0%, #22F6E3 100%);
+  --cp-gradient-selected: linear-gradient(90deg, #FF003C 0%, color-mix(in srgb, #FF003C 65%, #22F6E3) 100%);
+  --cp-gradient-panel: linear-gradient(135deg, color-mix(in srgb, #22F6E3 6%, transparent) 0%, transparent 42%), #0C111A;
+  --cp-gradient-border: linear-gradient(90deg, #FF003C, transparent 48%, #22F6E3);
+
+  /* ── Shadow ── */
+  --cp-shadow-crisp: 4px 4px 0 #FF003C;
+
+  /* ── Navbar ── */
+  --navbar-border-color: #263241;
+  --navbar-shadow: 0 1px 0 #263241;
+
+  /* ── Stepper ── */
+  --stepper-line-color: var(--cp-primary);
+  --stepper-shimmer: linear-gradient(to bottom, transparent 0%, #22F6E3 50%, transparent 100%);
+
+  /* ── Skill Chips ── */
+  --skill-chip-bg: rgba(255, 0, 60, 0.1);
+  --skill-chip-border: #FF003C;
+  --skill-chip-bg-hover: #FF003C;
+
+  /* ── Stats ── */
+  --stats-value-color: #FF4D70;
+  --stats-title-color: #FF4D70;
+
+  /* ── About avatar ── */
+  --avatar-dark-glow: 0 0 24px color-mix(in srgb, #FF003C 40%, transparent);
+
+  /* ── Footer ── */
+  --footer-border-color: #263241;
+}
+
+
+/* ══════════════════════════════════════════════════════════════
+   3. BASE ELEMENT OVERRIDES
+   ══════════════════════════════════════════════════════════════ */
+
+html.cyberpunk body {
+  background-color: var(--background);
+  color: var(--on-background);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html.cyberpunk ::selection {
+  background-color: var(--selection-bg);
+  color: var(--selection-text);
+}
+
+/* Scrollbar — HUD rail style */
+html.cyberpunk ::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+html.cyberpunk ::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+html.cyberpunk ::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--cp-primary) 40%, transparent);
+  border-radius: 0;
+}
+
+html.cyberpunk ::-webkit-scrollbar-thumb:hover {
+  background: color-mix(in srgb, var(--cp-secondary) 80%, transparent);
+}
+
+
+/* ══════════════════════════════════════════════════════════════
+   4. SILK + SPLASH CURSOR — DISABLED IN CYBERPUNK LIGHT
+   ══════════════════════════════════════════════════════════════ */
+
+html.cyberpunk:not(.dark) .silk-overlay {
+  display: none !important;
+}
+
+html.cyberpunk .splash-cursor-wrapper {
+  display: none !important;
+}
+
+
+/* ══════════════════════════════════════════════════════════════
+   5. THEME SELECTOR COMPONENT
+   ══════════════════════════════════════════════════════════════ */
+
+html.cyberpunk .theme-selector {
+  border: none;
+  position: relative;
+  border-radius: 2px;
+  box-shadow: none;
+  background-color: var(--surface);
+  clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+  transition: box-shadow 120ms ease;
+}
+
+html.cyberpunk .theme-selector::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background: var(--cp-gradient-action);
+  opacity: 0;
+  transition: opacity 120ms ease;
+}
+
+html.cyberpunk .theme-selector:hover::before {
+  opacity: 0.15;
+}
+
+html.cyberpunk .theme-selector::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 10;
+  background: var(--cp-gradient-action);
+  clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px), 0 0, 2px 2px, 2px calc(100% - 9px), 9px calc(100% - 2px), calc(100% - 2px) calc(100% - 2px), calc(100% - 2px) 9px, calc(100% - 9px) 2px, 2px 2px);
+}
+
+html.cyberpunk.dark .theme-selector:hover {
+  box-shadow: var(--cp-glow-primary);
+}
+
+html.cyberpunk .theme-selector__chevron {
+  border-right: 1px solid var(--outline);
+  border-radius: 0;
+}
+
+html.cyberpunk .theme-selector__nav-group {
+  border-left: 1px solid var(--outline);
+}
+
+html.cyberpunk .theme-selector__nav--prev {
+  border-right: 1px solid var(--outline);
+}
+
+html.cyberpunk .theme-selector__label {
+  font-family: var(--font-display);
+  font-size: 0.55rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--on-surface);
+}
+
+html.cyberpunk .theme-selector__dropdown {
+  border: none;
+  position: absolute;
+  border-radius: 2px;
+  box-shadow: 4px 4px 0 var(--outline);
+  clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+  animation: themeDropIn 100ms ease both;
+}
+
+html.cyberpunk .theme-selector__dropdown::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background: var(--cp-gradient-action);
+  opacity: 0;
+  transition: opacity 120ms ease;
+}
+
+html.cyberpunk .theme-selector__dropdown:hover::before {
+  opacity: 0.15;
+}
+
+html.cyberpunk .theme-selector__dropdown::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 10;
+  background: var(--cp-gradient-action);
+  clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px), 0 0, 2px 2px, 2px calc(100% - 9px), 9px calc(100% - 2px), calc(100% - 2px) calc(100% - 2px), calc(100% - 2px) 9px, calc(100% - 9px) 2px, 2px 2px);
+}
+
+html.cyberpunk.dark .theme-selector__dropdown {
+  box-shadow: 4px 4px 0 var(--cp-primary);
+}
+
+html.cyberpunk .theme-selector__option {
+  font-family: var(--font-display);
+  font-size: 0.55rem;
+  letter-spacing: 0.1em;
+}
+
+html.cyberpunk .theme-selector__option:not(:last-child) {
+  border-bottom: 1px solid var(--outline-variant);
+}
+
+html.cyberpunk .theme-selector__option--active .theme-selector__option-dot {
+  background-color: var(--cp-primary);
+  border-radius: 0;
+}
+
+
+/* ══════════════════════════════════════════════════════════════
+   6. NAVBAR
+   ══════════════════════════════════════════════════════════════ */
+
+html.cyberpunk .navbar {
+  background-color: var(--background);
+  border-bottom: 1px solid var(--navbar-border-color);
+  box-shadow: var(--navbar-shadow);
+}
+
+/* Accent rail under navbar */
+html.cyberpunk .navbar::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 1px;
+  background: var(--cp-gradient-border);
+  opacity: 0.6;
+}
+
+html.cyberpunk .navbar {
+  position: relative;
+}
+
+html.cyberpunk .navbar-brand {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 0.9rem;
+  text-transform: uppercase; 
+  letter-spacing: 0.1em;
+  background-image: linear-gradient(90deg, var(--cp-primary) 0%, var(--primary-300) 65%, var(--cp-secondary) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  transition: filter 120ms ease, opacity 120ms ease;
+}
+
+html.cyberpunk .navbar-brand:hover {
+  opacity: 0.8;
+}
+
+html.cyberpunk.dark .navbar-brand:hover {
+  text-shadow: 0 0 10px color-mix(in srgb, #FF003C 50%, transparent);
+}
+
+
+/* ══════════════════════════════════════════════════════════════
+   7. HERO SECTION
+   ══════════════════════════════════════════════════════════════ */
+
+html.cyberpunk .hero-heading {
+  color: var(--on-surface);
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: calc(var(--font-size-hero) * 0.85);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* Glitch gradient text — red to cyan */
+html.cyberpunk .hero-heading-gradient {
+  background-image: linear-gradient(90deg, var(--cp-primary) 0%, var(--primary-300) 65%, var(--cp-secondary) 100%); 
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  position: relative;
+}
+
+html.cyberpunk.dark .hero-heading-gradient {
+  filter: drop-shadow(0 0 12px color-mix(in srgb, #FF003C 40%, transparent));
+}
+
+/* Glitch effect on hero heading — dark only, respects motion prefs */
+@media (prefers-reduced-motion: no-preference) {
+
+  html.cyberpunk.dark .hero-heading-gradient[data-text]::before,
+  html.cyberpunk.dark .hero-heading-gradient[data-text]::after {
+    content: attr(data-text);
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image: linear-gradient(90deg, var(--cp-primary) 0%, var(--cp-secondary) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  html.cyberpunk.dark .hero-heading-gradient[data-text]::before {
+    clip-path: inset(0 0 58% 0);
+    transform: translate(1px, -1px);
+    opacity: 0.6;
+  }
+
+  html.cyberpunk.dark .hero-heading-gradient[data-text]::after {
+    clip-path: inset(58% 0 0 0);
+    transform: translate(-1px, 1px);
+    opacity: 0.6;
+  }
+}
+
+html.cyberpunk .hero-type-animation {
+  text-shadow: 2px 2px 0 var(--cp-primary);
+}
+
+html.cyberpunk .hero-description {
+  color: color-mix(in srgb, var(--on-surface-variant) 80%, transparent);
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  font-size: 0.8rem;
+}
+
+/* CTA Primary — red/gradient, clipped HUD button */
+html.cyberpunk .hero-cta-primary {
+  background: transparent;
+  color: var(--on-surface);
+  font-family: var(--font-display) ;
+  font-weight: 700;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border: none;
+  position: relative;
+  border-radius: var(--btn-radius);
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 50%, calc(100% - 10px) 100%, 0 100%, 8px 50%);
+  transition: transform 100ms ease, box-shadow 100ms ease;
+}
+
+html.cyberpunk .hero-cta-primary::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background: var(--cp-gradient-action);
+  opacity: 0;
+  transition: opacity 100ms ease;
+}
+
+html.cyberpunk .hero-cta-primary:hover::before {
+  opacity: 0.15;
+}
+
+html.cyberpunk .hero-cta-primary::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 10;
+  background: var(--cp-gradient-action);
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 50%, calc(100% - 10px) 100%, 0 100%, 8px 50%, 0 0, 2px 2px, 10px 50%, 2px calc(100% - 2px), calc(100% - 10px) calc(100% - 2px), calc(100% - 2px) 50%, calc(100% - 10px) 2px, 2px 2px);
+}
+
+html.cyberpunk .hero-cta-primary:hover {
+  transform: translate(-1px, -1px);
+}
+
+html.cyberpunk.dark .hero-cta-primary:hover {
+  box-shadow: var(--cp-glow-primary);
+}
+
+html.cyberpunk .hero-cta-primary:active {
+  transform: translate(1px, 1px);
+  box-shadow: none;
+}
+
+/* CTA Secondary — ghost, cyan accent outline */
+html.cyberpunk .hero-cta-secondary {
+  background-color: transparent;
+  color: var(--on-surface);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border: none;
+  position: relative;
+  border-radius: var(--btn-radius);
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 50%, calc(100% - 10px) 100%, 0 100%, 8px 50%);
+  transition: transform 100ms ease, color 100ms ease, box-shadow 100ms ease;
+}
+
+html.cyberpunk .hero-cta-secondary::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background: var(--cp-gradient-action);
+  opacity: 0;
+  transition: opacity 100ms ease;
+}
+
+html.cyberpunk .hero-cta-secondary:hover::before {
+  opacity: 0.15;
+}
+
+html.cyberpunk .hero-cta-secondary::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 10;
+  background: var(--cp-gradient-action);
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 50%, calc(100% - 10px) 100%, 0 100%, 8px 50%, 0 0, 2px 2px, 10px 50%, 2px calc(100% - 2px), calc(100% - 10px) calc(100% - 2px), calc(100% - 2px) 50%, calc(100% - 10px) 2px, 2px 2px);
+}
+
+html.cyberpunk .hero-cta-secondary:hover {
+  transform: translate(-1px, -1px);
+}
+
+html.cyberpunk.dark .hero-cta-secondary:hover {
+  box-shadow: var(--cp-glow-secondary);
+}
+
+html.cyberpunk .hero-cta-secondary:active {
+  transform: translate(1px, 1px);
+  box-shadow: none;
+}
+
+html.cyberpunk .hero-visitor-text {
+  color: var(--on-surface);
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 1.25rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+html.cyberpunk .hero-visitor-count {
+  color: var(--primary-text);
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 1.5rem;
+  letter-spacing: 0.06em;
+}
+
+html.cyberpunk.dark .hero-visitor-count {
+  text-shadow: 0 0 10px color-mix(in srgb, #FF003C 50%, transparent);
+}
+
+html.cyberpunk .hero-avatar-border {
+  border: none;
+  position: relative;
+  box-shadow: none !important;
+}
+
+html.cyberpunk .hero-avatar-border::before,
+html.cyberpunk .hero-avatar-border::after {
+  display: none !important;
+}
+
+html.cyberpunk .hero-avatar-border .border-glow-inner {
+  clip-path: polygon(0 0, calc(100% - var(--cp-avatar-notch)) 0, 100% var(--cp-avatar-notch), 100% 100%, var(--cp-avatar-notch) 100%, 0 calc(100% - var(--cp-avatar-notch)));
+}
+
+html.cyberpunk .hero-avatar-border .border-glow-inner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background: var(--cp-gradient-action);
+  opacity: 0.15;
+  transition: opacity 120ms ease;
+}
+
+html.cyberpunk .hero-avatar-border .border-glow-inner::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 10;
+  background: var(--cp-gradient-action);
+  clip-path: polygon(0 0, calc(100% - var(--cp-avatar-notch)) 0, 100% var(--cp-avatar-notch), 100% 100%, var(--cp-avatar-notch) 100%, 0 calc(100% - var(--cp-avatar-notch)), 0 0, 2px 2px, 2px calc(100% - var(--cp-avatar-notch) - 1px), calc(var(--cp-avatar-notch) + 1px) calc(100% - 2px), calc(100% - 2px) calc(100% - 2px), calc(100% - 2px) calc(var(--cp-avatar-notch) + 1px), calc(100% - var(--cp-avatar-notch) - 1px) 2px, 2px 2px);
+}
+
+html.cyberpunk.dark .hero-avatar-border {
+  box-shadow: var(--cp-glow-primary);
+}
+
+html.cyberpunk .hero-avatar-canvas {
+  border-radius: 0;
+}
+
+
+/* ══════════════════════════════════════════════════════════════
+   8. ABOUT SECTION
+   ══════════════════════════════════════════════════════════════ */
+
+/* Section headings — Orbitron, uppercase, red accent, periodic glitch */
+html.cyberpunk .section-heading {
+  color: var(--on-surface);
+  font-family: var(--font-display);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  text-shadow: 2px 2px 0 var(--cp-primary);
+  animation: section-glitch 1s infinite linear alternate-reverse;
+}
+
+html.cyberpunk.dark .section-heading {
+  filter: drop-shadow(0 0 8px color-mix(in srgb, #FF003C 40%, transparent));
+}
+
+@keyframes section-glitch {
+  0%, 90% {
+    text-shadow: 2px 2px 0 var(--cp-primary);
+    transform: none;
+    filter: none;
+  }
+  91% {
+    text-shadow: -15px 0 var(--cp-primary), 15px 0 var(--cp-secondary);
+    transform: skewX(35deg) translate(-10px, 4px) scaleY(1.2);
+    filter: invert(1);
+  }
+  93% {
+    text-shadow: 12px 0 var(--cp-primary), -12px 0 var(--cp-secondary);
+    transform: skewX(-45deg) translate(12px, -6px) scaleX(1.1);
+    filter: hue-rotate(90deg) contrast(200%);
+  }
+  95% {
+    text-shadow: -8px 0 var(--cp-primary), 8px 0 var(--cp-secondary);
+    transform: skewX(20deg) translate(-5px, 8px);
+    filter: invert(0.8) sepia(1);
+  }
+  97% {
+    text-shadow: 6px 0 var(--cp-primary), -6px 0 var(--cp-secondary);
+    transform: skewX(-15deg) translate(5px, -3px) scale(1.05);
+    filter: hue-rotate(-90deg);
+  }
+  99%, 100% {
+    text-shadow: 2px 2px 0 var(--cp-primary);
+    transform: none;
+    filter: none;
+  }
+}
+
+@keyframes chip-text-glitch {
+  0%, 90% {
+    text-shadow: none;
+  }
+  91% {
+    text-shadow: -15px 0 var(--cp-primary), 15px 0 var(--cp-secondary);
+  }
+  93% {
+    text-shadow: 12px 0 var(--cp-primary), -12px 0 var(--cp-secondary);
+  }
+  95% {
+    text-shadow: -8px 0 var(--cp-primary), 8px 0 var(--cp-secondary);
+  }
+  97% {
+    text-shadow: 6px 0 var(--cp-primary), -6px 0 var(--cp-secondary);
+  }
+  99%, 100% {
+    text-shadow: none;
+  }
+}
+
+html.cyberpunk .section-heading-icon {
+  color: var(--cp-primary);
+}
+
+html.cyberpunk.dark .section-heading-icon {
+  filter: drop-shadow(0 0 6px color-mix(in srgb, #FF003C 60%, transparent));
+}
+
+/* About intro heading — gradient title */
+html.cyberpunk .about-intro-heading {
+  background-image: var(--cp-gradient-selected); 
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-family: var(--font-display);
+  font-weight: 800;
+}
+
+html.cyberpunk.dark .about-intro-heading {
+  filter: drop-shadow(0 0 8px color-mix(in srgb, #FF003C 40%, transparent));
+}
+
+
+
+html.cyberpunk .about-description-box {
+  background: var(--cp-gradient-panel);
+  border: none;
+  border-radius: var(--card-radius);
+  clip-path: polygon(0 0, calc(100% - var(--cp-notch)) 0, 100% var(--cp-notch), 100% 100%, var(--cp-notch) 100%, 0 calc(100% - var(--cp-notch)));
+  position: relative;
+  padding: 1.5rem;
+}
+
+html.cyberpunk .about-description-box::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background: var(--cp-gradient-action);
+  opacity: 0;
+  transition: opacity 120ms ease;
+}
+
+html.cyberpunk .about-description-box:hover::before {
+  opacity: 0.15;
+}
+
+html.cyberpunk .about-description-box::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 10;
+  background: var(--cp-gradient-action);
+  clip-path: polygon(0 0, calc(100% - var(--cp-notch)) 0, 100% var(--cp-notch), 100% 100%, var(--cp-notch) 100%, 0 calc(100% - var(--cp-notch)), 0 0, 2px 2px, 2px calc(100% - var(--cp-notch) - 1px), calc(var(--cp-notch) + 1px) calc(100% - 2px), calc(100% - 2px) calc(100% - 2px), calc(100% - 2px) calc(var(--cp-notch) + 1px), calc(100% - var(--cp-notch) - 1px) 2px, 2px 2px);
+}
+
+html.cyberpunk .about-description {
+  color: var(--on-surface-variant);
+  font-family: var(--font-sans);
+  font-weight: 500;
+}
+
+/* Avatar */
+html.cyberpunk {
+  --avatar-radius: 2px;
+}
+
+html.cyberpunk .about-avatar-glow {
+  border: none;
+  position: relative;
+  box-shadow: none !important;
+}
+
+html.cyberpunk .about-avatar-glow::before,
+html.cyberpunk .about-avatar-glow::after {
+  display: none !important;
+}
+
+html.cyberpunk .about-avatar-glow .border-glow-inner {
+  clip-path: polygon(0 0, calc(100% - var(--cp-avatar-notch)) 0, 100% var(--cp-avatar-notch), 100% 100%, var(--cp-avatar-notch) 100%, 0 calc(100% - var(--cp-avatar-notch)));
+}
+
+html.cyberpunk .about-avatar-glow .border-glow-inner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background: var(--cp-gradient-action);
+  opacity: 0.15;
+  transition: opacity 120ms ease;
+}
+
+html.cyberpunk .about-avatar-glow .border-glow-inner::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 10;
+  background: var(--cp-gradient-action);
+  clip-path: polygon(0 0, calc(100% - var(--cp-avatar-notch)) 0, 100% var(--cp-avatar-notch), 100% 100%, var(--cp-avatar-notch) 100%, 0 calc(100% - var(--cp-avatar-notch)), 0 0, 2px 2px, 2px calc(100% - var(--cp-avatar-notch) - 1px), calc(var(--cp-avatar-notch) + 1px) calc(100% - 2px), calc(100% - 2px) calc(100% - 2px), calc(100% - 2px) calc(var(--cp-avatar-notch) + 1px), calc(100% - var(--cp-avatar-notch) - 1px) 2px, 2px 2px);
+}
+
+html.cyberpunk.dark .about-avatar-glow {
+  box-shadow: var(--avatar-dark-glow);
+}
+
+/* Stepper */
+html.cyberpunk .stepper-line {
+  border-radius: 0;
+  background-color: var(--stepper-line-color);
+}
+
+html.cyberpunk .stepper-shimmer {
+  border-radius: 0;
+  background: var(--stepper-shimmer);
+}
+
+/* Stepper dot — diamond-ish, clipped */
+html.cyberpunk .stepper-dot {
+  border-radius: 0;
+  background-color: var(--cp-primary);
+  border: 1px solid var(--cp-primary);
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+}
+
+html.cyberpunk.dark .stepper-dot {
+  box-shadow: 0 0 10px color-mix(in srgb, #FF003C 50%, transparent);
+}
+
+html.cyberpunk .stepper-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--on-surface);
+}
+
+html.cyberpunk .stepper-date {
+  color: var(--primary-text);
+  font-weight: 700;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+}
+
+html.cyberpunk .stepper-subtitle {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  color: var(--on-surface-variant);
+}
+
+/* Skill chips — clipped HUD tags */
+html.cyberpunk .skill-chip {
+  --clip-border: var(--skill-chip-border);
+  border-radius: 0;
+  background-color: var(--surface);
+  color: var(--cp-primary);
+  border: none;
+  position: relative;
+  z-index: 1;
+  clip-path: polygon(var(--cp-notch-sm) 0, 100% 0, calc(100% - var(--cp-notch-sm)) 100%, 0 100%);
+  backdrop-filter: none;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  transition: background-color 120ms ease, color 120ms ease, box-shadow 120ms ease;
+}
+
+html.cyberpunk .skill-chip::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--cp-gradient-action);
+  opacity: 0;
+  z-index: -1;
+  pointer-events: none;
+  transition: opacity 120ms ease;
+}
+
+html.cyberpunk .skill-chip::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 10;
+  background-color: var(--clip-border);
+  clip-path: polygon(var(--cp-notch-sm) 0, 100% 0, calc(100% - var(--cp-notch-sm)) 100%, 0 100%, var(--cp-notch-sm) 0, calc(var(--cp-notch-sm) + 1px) 1px, 1px calc(100% - 1px), calc(100% - var(--cp-notch-sm) - 1px) calc(100% - 1px), calc(100% - 1px) 1px, calc(var(--cp-notch-sm) + 1px) 1px);
+  transition: background-color 120ms ease;
+}
+
+html.cyberpunk .skill-chip:hover { 
+  --clip-border: var(--cp-primary);
+  animation: chip-text-glitch 3s infinite linear alternate-reverse;
+}
+
+html.cyberpunk .skill-chip:hover::before {
+  opacity: 0.15;
+}
+
+html.cyberpunk.dark .skill-chip:hover {
+  box-shadow: 0 0 10px color-mix(in srgb, #FF003C 40%, transparent);
+}
+
+html.cyberpunk .skill-chip:active {
+  filter: brightness(0.9);
+}
+
+/* Tab buttons */
+html.cyberpunk .tab-button {
+  color: var(--on-surface-variant);
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+html.cyberpunk .tab-button:hover {
+  color: var(--cp-primary);
+}
+
+html.cyberpunk .tab-button--active {
+  color: var(--cp-primary);
+  font-weight: 700;
+}
+
+html.cyberpunk.dark .tab-button--active {
+  text-shadow: 0 0 8px color-mix(in srgb, #FF003C 50%, transparent);
+}
+
+html.cyberpunk .tab-underline {
+  background: var(--cp-gradient-action);
+  height: 2px;
+}
+
+html.cyberpunk .tab-label {
+  font-family: var(--font-display);
+}
+
+html.cyberpunk .tab-content {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  color: var(--on-surface-variant);
+}
+
+
+/* ══════════════════════════════════════════════════════════════
+   9. PROJECTS SECTION
+   ══════════════════════════════════════════════════════════════ */
+
+/* Project card — HUD panel with corner notch + accent rail */
+html.cyberpunk .project-card {
+  --clip-border: var(--outline);
+  border: none;
+  border-radius: 0;
+  background: var(--cp-gradient-panel);
+  box-shadow: var(--card-shadow);
+  clip-path: polygon(0 0, calc(100% - (var(--cp-notch) * 2)) 0, 100% calc(var(--cp-notch) * 2), 100% 100%, 0 100%);
+  position: relative;
+  transition: box-shadow 120ms ease, transform 100ms ease;
+}
+
+html.cyberpunk .project-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 10;
+  background-color: var(--clip-border);
+  clip-path: polygon(0 0, calc(100% - (var(--cp-notch) * 2)) 0, 100% calc(var(--cp-notch) * 2), 100% 100%, 0 100%, 0 0, 2px 2px, 2px calc(100% - 2px), calc(100% - 2px) calc(100% - 2px), calc(100% - 2px) calc((var(--cp-notch) * 2) + 0.5px), calc(100% - (var(--cp-notch) * 2) - 0.5px) 2px, 2px 2px);
+  transition: background-color 120ms ease;
+}
+
+/* Top accent rail on project cards */
+html.cyberpunk .project-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto auto 0;
+  width: 38%;
+  height: 2px;
+  background: var(--cp-gradient-action);
+  z-index: 11;
+  pointer-events: none;
+}
+
+html.cyberpunk .project-card:hover {
+  --clip-border: var(--cp-primary);
+  transform: translate(-1px, -1px);
+}
+
+html.cyberpunk.dark .project-card:hover {
+  box-shadow: var(--cp-glow-primary);
+}
+
+html.cyberpunk .project-card:active {
+  transform: translate(1px, 1px);
+  box-shadow: none;
+}
+
+html.cyberpunk .project-card-body {
+  background-color: transparent;
+  border-top: 1px solid var(--outline);
+}
+
+html.cyberpunk .project-card-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--on-surface);
+}
+
+html.cyberpunk .project-card-desc {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  color: var(--on-surface-variant);
+}
+
+html.cyberpunk .project-card-action {
+  background-color: transparent;
+  color: var(--on-surface-variant);
+  border: none;
+  position: relative;
+  border-radius: 0;
+  font-family: var(--font-display);
+  font-size: 0.6rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  clip-path: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
+  transition: color 100ms ease;
+}
+
+html.cyberpunk .project-card-action::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background: var(--cp-gradient-action);
+  opacity: 0;
+  transition: opacity 100ms ease;
+}
+
+html.cyberpunk .project-card-action:hover::before {
+  opacity: 0.15;
+}
+
+html.cyberpunk .project-card-action::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 10;
+  background: var(--cp-gradient-action);
+  clip-path: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%, 10px 0, 11px 1px, 2px calc(100% - 1px), calc(100% - 11px) calc(100% - 1px), calc(100% - 2px) 1px, 11px 1px);
+}
+
+html.cyberpunk .project-card-action:hover {
+  color: #FFFFFF;
+}
+
+html.cyberpunk.dark .project-card-action:hover {
+  text-shadow: 0 0 8px color-mix(in srgb, #22F6E3 60%, transparent);
+}
+
+/* Project tags — clipped HUD chips */
+html.cyberpunk .project-tag {
+  --clip-border: var(--skill-chip-border);
+  position: relative;
+  background-color: transparent;
+  color: var(--cp-primary);
+  border: 1px solid var(--clip-border);
+  border-radius: 0;
+  transform: skewX(-20deg);
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  transition: all 120ms ease;
+  z-index: 1;
+}
+
+html.cyberpunk .project-tag .project-tag-text {
+  display: inline-block;
+  transform: skewX(20deg);
+}
+
+html.cyberpunk .project-tag::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: var(--background);
+  z-index: -1;
+  transition: all 120ms ease;
+}
+
+html.cyberpunk .project-tag::after {
+  content: '';
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 100%;
+  height: 100%;
+  border: 1px solid var(--clip-border);
+  z-index: -2;
+  transition: all 120ms ease;
+  box-sizing: border-box;
+}
+
+html.cyberpunk .project-tag:hover {
+  --clip-border: var(--cp-primary);
+  animation: chip-text-glitch 3s infinite linear alternate-reverse;
+}
+
+html.cyberpunk .project-tag:hover::before {
+  background-color: color-mix(in srgb, var(--cp-primary) 8%, var(--background));
+}
+
+html.cyberpunk.dark .project-tag:hover {
+  box-shadow: 0 0 10px color-mix(in srgb, #FF003C 40%, transparent);
+}
+
+html.cyberpunk.dark .project-tag:hover::before {
+  background-color: color-mix(in srgb, var(--cp-primary) 15%, var(--background));
+}
+
+html.cyberpunk .project-tag:active {
+  transform: skewX(-20deg) translate(4px, 4px);
+  filter: brightness(0.9);
+}
+
+html.cyberpunk .project-tag:active::after {
+  top: 0;
+  left: 0;
+}
+
+html.cyberpunk .project-tag--selected {
+  --clip-border: var(--cp-primary);
+  color: #FFFFFF;
+}
+
+html.cyberpunk .project-tag--selected::before {
+  background: var(--cp-gradient-selected);
+}
+
+html.cyberpunk.dark .project-tag--selected {
+  box-shadow: 0 0 10px color-mix(in srgb, #FF003C 35%, transparent);
+}
+
+html.cyberpunk .project-tag--selected:hover {
+  filter: brightness(1.1);
+  transform: skewX(-20deg);
+  animation: none;
+}
+
+html.cyberpunk .project-tag--selected:active {
+  filter: brightness(0.9);
+}
+
+/* Pagination */
+html.cyberpunk .pagination-btn {
+  --clip-border: var(--outline);
+  border: none;
+  position: relative;
+  border-radius: 0;
+  color: var(--on-surface);
+  font-family: var(--font-display);
+  clip-path: polygon(6px 0, 100% 0, calc(100% - 6px) 100%, 0 100%);
+  transition: background-color 100ms ease, color 100ms ease;
+}
+
+html.cyberpunk .pagination-btn::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 10;
+  background-color: var(--clip-border);
+  clip-path: polygon(6px 0, 100% 0, calc(100% - 6px) 100%, 0 100%, 6px 0, 6px 1px, 1px calc(100% - 1px), calc(100% - 6px) calc(100% - 1px), calc(100% - 1px) 1px, 6px 1px);
+  transition: background-color 100ms ease;
+}
+
+html.cyberpunk .pagination-btn:hover:not(:disabled) {
+  --clip-border: var(--cp-primary);
+  background-color: var(--cp-primary);
+  color: #FFFFFF;
+}
+
+html.cyberpunk.dark .pagination-btn:hover:not(:disabled) {
+  box-shadow: 0 0 12px color-mix(in srgb, #FF003C 40%, transparent);
+}
+
+html.cyberpunk .pagination-btn:active:not(:disabled) {
+  filter: brightness(0.9);
+}
+
+html.cyberpunk .pagination-text {
+  color: var(--on-surface-variant);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+}
+
+
+/* ══════════════════════════════════════════════════════════════
+   10. DIGITAL PRESENCE
+   ══════════════════════════════════════════════════════════════ */
+
+html.cyberpunk .dp-heading {
+  color: var(--on-surface);
+  font-family: var(--font-display);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+html.cyberpunk .dp-heading-icon {
+  color: var(--cp-primary);
+}
+
+html.cyberpunk .dp-subheading {
+  color: var(--on-surface-variant);
+  font-family: var(--font-sans);
+  font-weight: 500;
+}
+
+/* Platform link cards — HUD panels */
+html.cyberpunk .platform-link {
+  --clip-border: var(--outline);
+  border: none;
+  border-radius: 0;
+  background: var(--cp-gradient-panel);
+  box-shadow: var(--card-shadow);
+  clip-path: polygon(0 0, calc(100% - var(--cp-notch)) 0, 100% var(--cp-notch), 100% 100%, var(--cp-notch) 100%, 0 calc(100% - var(--cp-notch)));
+  position: relative;
+  transition: box-shadow 120ms ease, transform 100ms ease;
+}
+
+html.cyberpunk .platform-link::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto auto 0;
+  width: 30%;
+  height: 2px;
+  background: var(--cp-gradient-action);
+  pointer-events: none;
+}
+
+html.cyberpunk .platform-link::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 10;
+  background-color: var(--clip-border);
+  clip-path: polygon(0 0, calc(100% - var(--cp-notch)) 0, 100% var(--cp-notch), 100% 100%, var(--cp-notch) 100%, 0 calc(100% - var(--cp-notch)), 0 0, 1px 1px, 1px calc(100% - var(--cp-notch) - 0.5px), calc(var(--cp-notch) + 0.5px) calc(100% - 1px), calc(100% - 1px) calc(100% - 1px), calc(100% - 1px) calc(var(--cp-notch) + 0.5px), calc(100% - var(--cp-notch) - 0.5px) 1px, 1px 1px);
+  transition: background-color 120ms ease;
+}
+
+html.cyberpunk .platform-link:hover {
+  --clip-border: var(--cp-primary);
+  transform: translate(-1px, -1px);
+}
+
+html.cyberpunk.dark .platform-link:hover {
+  box-shadow: var(--cp-glow-primary);
+}
+
+html.cyberpunk .platform-link:active {
+  transform: translate(1px, 1px);
+  box-shadow: none;
+}
+
+html.cyberpunk .platform-link-label {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--on-surface);
+}
+
+html.cyberpunk .platform-link-username {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--on-surface-variant);
+}
+
+
+/* ══════════════════════════════════════════════════════════════
+   11. GITHUB CARDS
+   ══════════════════════════════════════════════════════════════ */
+
+html.cyberpunk .github-card {
+  --clip-border: var(--outline);
+  background: var(--cp-gradient-panel);
+  border: none;
+  border-radius: 0;
+  box-shadow: var(--card-shadow);
+  clip-path: polygon(0 0, calc(100% - var(--cp-notch)) 0, 100% var(--cp-notch), 100% 100%, var(--cp-notch) 100%, 0 calc(100% - var(--cp-notch)));
+  position: relative;
+  transition: box-shadow 120ms ease, transform 100ms ease;
+}
+
+html.cyberpunk .github-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto auto 0;
+  width: 38%;
+  height: 2px;
+  background: var(--cp-gradient-action);
+  pointer-events: none;
+}
+
+html.cyberpunk .github-card::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 10;
+  background-color: var(--clip-border);
+  clip-path: polygon(0 0, calc(100% - var(--cp-notch)) 0, 100% var(--cp-notch), 100% 100%, var(--cp-notch) 100%, 0 calc(100% - var(--cp-notch)), 0 0, 1px 1px, 1px calc(100% - var(--cp-notch) - 0.5px), calc(var(--cp-notch) + 0.5px) calc(100% - 1px), calc(100% - 1px) calc(100% - 1px), calc(100% - 1px) calc(var(--cp-notch) + 0.5px), calc(100% - var(--cp-notch) - 0.5px) 1px, 1px 1px);
+  transition: background-color 120ms ease;
+}
+
+html.cyberpunk .github-card:hover {
+  --clip-border: var(--cp-primary);
+  transform: translate(-1px, -1px);
+}
+
+html.cyberpunk.dark .github-card:hover {
+  box-shadow: var(--cp-glow-primary);
+}
+
+html.cyberpunk .github-card:active {
+  transform: translate(1px, 1px);
+  box-shadow: none;
+}
+
+html.cyberpunk .github-card-title {
+  color: var(--on-surface);
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+html.cyberpunk .github-card-title--bold {
+  color: var(--stats-title-color);
+  font-family: var(--font-display);
+  font-weight: 800;
+}
+
+html.cyberpunk.dark .github-card-title--bold {
+  text-shadow: 0 0 10px color-mix(in srgb, #FF003C 40%, transparent);
+}
+
+html.cyberpunk .github-card-title-sub {
+  color: var(--on-surface-variant);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+}
+
+html.cyberpunk .github-section-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--on-surface-variant);
+}
+
+html.cyberpunk .profile-heading {
+  color: var(--primary-text);
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+html.cyberpunk .profile-detail-row {
+  color: var(--on-surface-variant);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+}
+
+html.cyberpunk .github-stat-icon {
+  color: var(--cp-primary);
+}
+
+html.cyberpunk.dark .github-stat-icon {
+  filter: drop-shadow(0 0 6px color-mix(in srgb, #FF003C 50%, transparent));
+}
+
+/* Chart */
+html.cyberpunk .chart-accent-fill {
+  fill: var(--cp-primary);
+}
+
+html.cyberpunk .chart-accent-stroke {
+  stroke: var(--cp-primary);
+}
+
+html.cyberpunk .chart-bar-fill {
+  background-color: var(--cp-primary);
+}
+
+html.cyberpunk .chart-bar-track {
+  background-color: var(--outline-variant);
+}
+
+/* Stats */
+html.cyberpunk .stats-icon {
+  color: var(--cp-primary);
+}
+
+html.cyberpunk .stats-value {
+  color: var(--stats-value-color);
+  font-family: var(--font-display);
+  font-weight: 900;
+  letter-spacing: 0.04em;
+}
+
+html.cyberpunk.dark .stats-value {
+  text-shadow: 0 0 10px color-mix(in srgb, #FF003C 50%, transparent);
+}
+
+html.cyberpunk .stats-label {
+  color: var(--on-surface-variant);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* Donut */
+html.cyberpunk .donut-track {
+  color: var(--outline-variant);
+}
+
+/* Streak */
+html.cyberpunk .streak-value {
+  color: var(--on-surface);
+  font-family: var(--font-display);
+  font-weight: 900;
+}
+
+html.cyberpunk .streak-value--accent {
+  color: var(--cp-primary);
+}
+
+html.cyberpunk.dark .streak-value--accent {
+  text-shadow: 0 0 10px color-mix(in srgb, #FF003C 50%, transparent);
+}
+
+html.cyberpunk .streak-label {
+  color: var(--on-surface-variant);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+html.cyberpunk .streak-label--accent {
+  color: var(--cp-primary);
+}
+
+html.cyberpunk .streak-divider {
+  border-right: 1px solid var(--outline-subtle);
+}
+
+/* Skeleton */
+html.cyberpunk .skeleton-line {
+  background-color: var(--skeleton-bg);
+  border-radius: 0;
+}
+
+html.cyberpunk .skeleton-line--dim {
+  background-color: var(--skeleton-bg-dim);
+}
+
+/* Error */
+html.cyberpunk .github-card-error-icon {
+  color: var(--on-surface-variant);
+}
+
+html.cyberpunk .github-card-error-text {
+  color: var(--on-surface-variant);
+  font-family: var(--font-sans);
+}
+
+
+/* ══════════════════════════════════════════════════════════════
+   12. FOOTER
+   ══════════════════════════════════════════════════════════════ */
+
+html.cyberpunk .footer {
+  background-color: var(--background);
+  border-top: 1px solid var(--footer-border-color);
+  position: relative;
+}
+
+/* Top gradient border rail */
+html.cyberpunk .footer::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 1px;
+  background: var(--cp-gradient-border);
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+html.cyberpunk .footer-wrapper {
+  background-color: var(--background);
+}
+
+html.cyberpunk .footer-text {
+  color: var(--on-surface-variant);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+}
+
+
+/* ══════════════════════════════════════════════════════════════
+   13. FOCUS-VISIBLE (accessibility)
+   ══════════════════════════════════════════════════════════════ */
+
+html.cyberpunk *:focus-visible {
+  outline: 2px solid var(--cp-secondary);
+  outline-offset: 2px;
+}
+
+html.cyberpunk.dark *:focus-visible {
+  box-shadow: 0 0 0 4px color-mix(in srgb, #22F6E3 30%, transparent);
+}
+
+
+/* ══════════════════════════════════════════════════════════════
+   14. BORDER GLOW OVERRIDE
+   ══════════════════════════════════════════════════════════════ */
+
+/* Transparent border-glow for cyberpunk — handled via clip-path + box-shadow */
+html.cyberpunk .border-glow-card {
+  border-color: transparent !important;
+}
+
+
+/* ══════════════════════════════════════════════════════════════
+   15. RESPONSIVE OVERRIDES
+   ══════════════════════════════════════════════════════════════ */
+
+  /* ── Tablet (≤ 768px) ── */
+@media (max-width: 768px) {
+  html.cyberpunk {
+    --font-size-hero: 32px;
+    --font-size-section: 26px;
+    --font-size-dp: 1.5rem;
+    --cp-notch: 8px;
+    --cp-avatar-notch: 24px;
+  }
+
+  html.cyberpunk .navbar-brand {
+    font-size: 0.7rem;
+  }
+
+  html.cyberpunk .hero-visitor-text {
+    font-size: 1.25rem;
+  }
+
+  html.cyberpunk .about-intro-heading {
+    font-size: 1.375rem;
+  }
+
+  html.cyberpunk .section-heading-icon {
+    font-size: 1.75rem !important;
+  }
+
+  html.cyberpunk .tab-label {
+    font-size: 0.85rem;
+  }
+}
+
+/* ── Mobile (≤ 480px) ── */
+@media (max-width: 480px) {
+  html.cyberpunk {
+    --font-size-hero: 26px;
+    --font-size-section: 22px;
+    --font-size-dp: 1.25rem;
+    --font-size-body: 15px;
+    --cp-notch: 6px;
+    --cp-avatar-notch: 16px;
+    --card-shadow: 2px 2px 0 var(--outline);
+  }
+
+  html.cyberpunk .navbar-brand {
+    font-size: 0.65rem;
+  }
+
+  html.cyberpunk .hero-visitor-text {
+    font-size: 1.1rem;
+  }
+
+  html.cyberpunk .about-intro-heading {
+    font-size: 1.2rem;
+  }
+
+  html.cyberpunk .section-heading-icon {
+    font-size: 1.4rem !important;
+  }
+
+  html.cyberpunk .section-heading {
+    gap: 0.35rem;
+  }
+
+  html.cyberpunk .tab-label {
+    font-size: 0.75rem;
+  }
+
+  html.cyberpunk .about-description-box {
+    padding: 1rem;
+  }
+
+  html.cyberpunk .about-description {
+    font-size: 14px;
+  }
+
+  html.cyberpunk .github-section-title {
+    font-size: 0.6rem;
+  }
+
+  /* Disable clip-path on mobile to prevent overflow clipping */
+  html.cyberpunk .about-description-box,
+  html.cyberpunk .platform-link,
+  html.cyberpunk .github-card,
+  html.cyberpunk .project-card {
+    clip-path: none;
+  }
+}
+
+/* ── Small phones (≤ 375px) ── */
+@media (max-width: 375px) {
+  html.cyberpunk {
+    --font-size-hero: 22px;
+    --font-size-section: 20px;
+    --font-size-dp: 1.1rem;
+  }
+
+  html.cyberpunk .navbar-brand {
+    font-size: 0.6rem;
+  }
+
+  html.cyberpunk .hero-heading {
+    letter-spacing: -0.01em;
+  }
+
+  html.cyberpunk .hero-visitor-text {
+    font-size: 0.95rem;
+  }
+
+  html.cyberpunk {
+    --card-shadow: 2px 2px 0 var(--outline);
+  }
+}

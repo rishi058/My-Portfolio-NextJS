@@ -11,11 +11,11 @@ const GlobalGrooveDeletion = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    
+
     const email = e.target.email.value;
     const selectedReason = e.target.reason.value;
     const otherReason = e.target.otherReason ? e.target.otherReason.value : "";
-    
+
     const finalReason = selectedReason === "Other" ? `Other: ${otherReason}` : selectedReason;
 
     const data = {
@@ -23,7 +23,7 @@ const GlobalGrooveDeletion = () => {
       subject: "Global Groove - Account Deletion Request",
       message: `User ${email} has requested account deletion.\nReason: ${finalReason}`,
     };
-    
+
     const JSONdata = JSON.stringify(data);
     const endpoint = "/api/send";
 
@@ -54,7 +54,7 @@ const GlobalGrooveDeletion = () => {
     <main className="flex min-h-screen flex-col bg-[#121212] font-sans">
       <div className="flex-grow flex items-center justify-center py-10 px-6">
         <div className="max-w-6xl w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          
+
           {/* Left Side - App Info */}
           <div className="space-y-8 animate-fadeIn">
             <div className="space-y-4">
@@ -86,9 +86,9 @@ const GlobalGrooveDeletion = () => {
             </div>
 
             <div className="pt-4">
-              <a 
-                href="https://play.google.com/store/apps/details?id=com.devwizards.global_groove" 
-                target="_blank" 
+              <a
+                href="https://play.google.com/store/apps/details?id=com.devwizards.global_groove"
+                target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center px-8 py-4 bg-[#121212] text-white rounded-2xl shadow-[6px_6px_12px_#0b0b0b,-6px_-6px_12px_#191919] hover:shadow-[4px_4px_8px_#0b0b0b,-4px_-4px_8px_#191919] transition-all group"
               >
@@ -128,10 +128,10 @@ const GlobalGrooveDeletion = () => {
                       className="ngInput"
                     />
                   </div>
-                  
+
                   <div className="ngFormGroup">
                     <label htmlFor="reason" className="ngLabel">Reason for Deletion</label>
-                    <div style={{position: 'relative'}}>
+                    <div style={{ position: 'relative' }}>
                       <select
                         id="reason"
                         name="reason"
@@ -164,8 +164,8 @@ const GlobalGrooveDeletion = () => {
                     </div>
                   )}
 
-                  <button 
-                    type="submit" 
+                  <button
+                    type="submit"
                     className="ngButton"
                     disabled={loading}
                   >
