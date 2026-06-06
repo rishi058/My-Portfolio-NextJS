@@ -1,5 +1,7 @@
 import { NextResponse } from 'next/server';
 
+export const revalidate = 21600; // 6h cache
+
 const GITHUB_GRAPHQL = 'https://api.github.com/graphql';
 const USERNAME = 'rishi058';
 
@@ -14,11 +16,12 @@ async function fetchGitHub(query, variables) {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({ query, variables }),
-    next: { revalidate: 21600 },
+    cache: 'no-store',
   });
 
   const json = await res.json();
   if (json.errors) throw new Error(json.errors[0].message);
+  if (!json.data) throw new Error(json.message || 'GitHub API returned no data');
   return json.data;
 }
 

@@ -1,7 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import Footer from "../components/Footer";
-import "./neumorphism.css";
+import "./global-groove.css";
 
 const GlobalGrooveDeletion = () => {
   const [emailSubmitted, setEmailSubmitted] = useState(false);

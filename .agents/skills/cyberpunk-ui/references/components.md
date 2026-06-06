@@ -1,168 +1,87 @@
 # Component Patterns
 
-Replace `.cp-*` selectors with existing project selectors when styling an app.
+Use existing classes when possible. When building new components, map them to the CSS variables defined in `cyberpunk.css`.
 
-## Base Surface
+## Base Surface / Card
+
+Cards are crisp panels with angular geometry. Use `--card-shadow` and crisp hover effects.
 
 ```css
-.cp-surface {
-  color: var(--cp-text);
-  background: var(--cp-gradient-panel);
-  border: var(--cp-border-width) solid var(--cp-border);
+/* Custom Card Example */
+.custom-card {
+  background-color: var(--surface);
+  border: 1px solid var(--outline);
+  box-shadow: var(--card-shadow);
   clip-path: polygon(0 0, calc(100% - var(--cp-notch)) 0, 100% var(--cp-notch), 100% 100%, var(--cp-notch) 100%, 0 calc(100% - var(--cp-notch)));
+  transition: box-shadow 120ms ease, border-color 120ms ease;
+}
+
+.custom-card:hover {
+  border-color: var(--card-hover-border-color);
+  box-shadow: var(--card-hover-glow);
 }
 ```
 
-## Card
+## Primary CTA Button (Reference: `.hero-cta-primary`)
 
-Cards are crisp panels with one accent rail, not glowing billboards.
+Primary CTAs use complex clipping and pseudo-elements for the gradient background to achieve an inset look. Use `--btn-radius`.
 
 ```css
-.cp-card {
+.custom-btn {
+  color: var(--on-surface);
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  border: none;
   position: relative;
-  padding: clamp(1rem, 2vw, 1.5rem);
-  background: var(--cp-gradient-panel);
-  border: var(--cp-border-width) solid var(--cp-border);
-  clip-path: polygon(0 0, calc(100% - var(--cp-notch)) 0, 100% var(--cp-notch), 100% 100%, 0 100%);
-  box-shadow: var(--cp-shadow-crisp);
+  border-radius: var(--btn-radius);
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 50%, calc(100% - 10px) 100%, 0 100%, 8px 50%);
+  background: transparent;
 }
 
-.cp-card::before {
+.custom-btn::before {
+  /* Hover gradient background */
   content: "";
   position: absolute;
-  inset: 0 auto auto 0;
-  width: 38%;
-  height: 3px;
+  inset: 0;
   background: var(--cp-gradient-action);
+  opacity: 0;
+  z-index: 0;
 }
 
-.cp-card:hover {
-  transform: translate(-1px, -1px);
-  border-color: var(--cp-secondary);
-}
-
-.cp-card[aria-selected="true"],
-.cp-card.is-selected {
-  border-width: var(--cp-border-width-active);
-  border-color: var(--cp-primary);
-  box-shadow: var(--cp-shadow-crisp), var(--cp-glow-primary);
-}
-```
-
-## Tile
-
-Tiles are compact dashboard cells: metric first, decoration second.
-
-```css
-.cp-tile {
-  display: grid;
-  gap: 0.35rem;
-  min-height: 5.5rem;
-  padding: 0.875rem;
-  background: var(--cp-surface-2);
-  border: var(--cp-border-width) solid var(--cp-border);
-  border-left: 3px solid var(--cp-primary);
-  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%);
-}
-
-.cp-tile:hover {
-  border-color: var(--cp-secondary);
-  transform: translateY(-2px);
-}
-
-.cp-tile[aria-selected="true"],
-.cp-tile.is-selected {
-  color: var(--cp-on-accent);
-  background: var(--cp-gradient-selected);
-  border-color: var(--cp-border-strong);
+.custom-btn::after {
+  /* Inner border clip */
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--cp-gradient-action);
+  z-index: 10;
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 50%, calc(100% - 10px) 100%, 0 100%, 8px 50%, 0 0, 2px 2px, 10px 50%, 2px calc(100% - 2px), calc(100% - 10px) calc(100% - 2px), calc(100% - 2px) 50%, calc(100% - 10px) 2px, 2px 2px);
 }
 ```
 
-## Chip
+## Secondary Button / Ghost (Reference: `.hero-cta-secondary`)
 
-Chips are clipped status tags, not soft pills.
+Similar structure to the primary button but without the solid fill, relying purely on the gradient border and specific hover shadows (`box-shadow: var(--cp-glow-secondary)` in dark mode).
+
+## Tiles & Chips
+
+Use `--cp-notch-sm` (8px) for smaller chips.
 
 ```css
-.cp-chip {
-  display: inline-flex;
-  align-items: center;
-  min-height: 1.75rem;
-  padding: 0 0.75rem;
-  font-family: var(--cp-font-display);
-  font-size: var(--cp-text-xs);
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--cp-secondary);
-  background: transparent;
-  border: 1px solid currentColor;
+.custom-chip {
+  border: 1px solid var(--outline);
+  color: var(--on-surface);
   clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%);
 }
-
-.cp-chip:hover,
-.cp-chip.is-selected,
-.cp-chip[aria-selected="true"] {
-  color: var(--cp-on-accent);
-  background: var(--cp-primary);
-  border-color: var(--cp-primary);
-}
 ```
 
-## Button
+## Focus and Selection
+
+Always ensure interactive elements have a visible focus state that is accessible in both themes.
 
 ```css
-.cp-button {
-  min-height: 44px;
-  padding: 0 1rem;
-  font-family: var(--cp-font-display);
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--cp-on-accent);
-  background: var(--cp-primary);
-  border: var(--cp-border-width-active) solid var(--cp-border-strong);
-  clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 50%, calc(100% - 12px) 100%, 0 100%, 8px 50%);
-}
-
-.cp-button:hover {
-  transform: translate(-1px, -1px);
-  box-shadow: var(--cp-glow-primary);
-}
-
-.cp-button:active {
-  transform: translate(1px, 1px);
-  box-shadow: none;
-}
-```
-
-## Inputs and Focus
-
-```css
-.cp-input {
-  min-height: 44px;
-  padding: 0 0.875rem;
-  color: var(--cp-text);
-  background: var(--cp-surface);
-  border: var(--cp-border-width) solid var(--cp-border);
-  border-radius: var(--cp-radius);
-  font: 500 var(--cp-text-base) / 1.4 var(--cp-font-ui);
-}
-
-.cp-input:focus-visible,
-.cp-button:focus-visible,
-.cp-chip:focus-visible,
-.cp-card:focus-visible,
-.cp-tile:focus-visible {
-  outline: 2px solid var(--cp-bg);
+.custom-input:focus-visible {
+  outline: 2px solid var(--cp-primary);
   outline-offset: 2px;
-  box-shadow: 0 0 0 4px var(--cp-secondary);
-}
-
-.cp-button:disabled,
-.cp-input:disabled {
-  opacity: 0.45;
-  cursor: not-allowed;
-  box-shadow: none;
-  filter: grayscale(0.5);
 }
 ```

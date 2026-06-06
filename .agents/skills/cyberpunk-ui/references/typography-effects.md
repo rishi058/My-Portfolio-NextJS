@@ -2,92 +2,39 @@
 
 ## Fonts
 
-Load from Google Fonts:
+The fonts are loaded and defined in `cyberpunk.css` via custom properties. Do not re-import them.
 
-```html
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Rajdhani:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-```
+- **Display**: `var(--font-display)` (`Orbitron`) – Use for headings, buttons, chips, labels, metrics, nav, and HUD numbers.
+- **Sans**: `var(--font-sans)` (`Rajdhani`) – Use for UI paragraphs and dense UI text.
+- **Mono**: `var(--font-mono)` (`JetBrains Mono`) – Use for data IDs, coordinates, timestamps, and console text.
 
-```css
-:root {
-  --cp-font-display: 'Orbitron', system-ui, sans-serif;
-  --cp-font-ui: 'Rajdhani', system-ui, sans-serif;
-  --cp-font-mono: 'JetBrains Mono', monospace;
-
-  --cp-text-xs: 0.75rem;
-  --cp-text-sm: 0.875rem;
-  --cp-text-base: 1rem;
-  --cp-text-lg: 1.125rem;
-  --cp-text-xl: 1.5rem;
-  --cp-text-2xl: 2rem;
-  --cp-text-3xl: 3rem;
-}
-```
-
-Rules:
-- Use `Orbitron` for headings, buttons, chips, labels, metrics, and nav.
-- Use `Rajdhani` for paragraphs and dense UI text.
-- Use `JetBrains Mono` for data IDs, coordinates, timestamps, and console text.
-- Uppercase labels with `letter-spacing: 0.08em`; do not uppercase body copy.
+**Typographic Rules:**
+- Use uppercase for short labels, headings, and buttons with `letter-spacing: 0.05em` or `0.1em`.
+- Do not uppercase large bodies of text.
+- Do not add fake tiny technical text unless it labels real data.
 
 ## Glow Rules
 
-| Allowed Glow | No Glow |
-|---|---|
-| primary CTA hover/focus | body text |
-| selected tab/card/tile | default cards |
-| active progress/data point | all borders at once |
-| destructive alert pulse | disabled controls |
-| hero wordmark only | light mode backgrounds |
+Glow is strictly disabled in light mode. `cyberpunk.css` handles this seamlessly by setting glow variables to `none` or `transparent` inside `html.cyberpunk` and defining them inside `html.cyberpunk.dark`.
 
-Budget: maximum two glowing elements per viewport. If everything glows, nothing feels cyberpunk.
+- **Primary Glow**: `var(--cp-glow-primary)`
+- **Secondary Glow**: `var(--cp-glow-secondary)`
+- **Dark Avatar Glow**: `var(--avatar-dark-glow)`
 
-## Glitch Rules
+Budget: maximum two glowing elements per viewport. Rely on solid, crisp shadows (`var(--cp-shadow-crisp)`, `var(--card-shadow)`) rather than blur. If everything glows, nothing feels cyberpunk.
 
-Use glitch as a short state cue, not wallpaper.
+## Glitch Effects
 
-```css
-.cp-glitch {
-  position: relative;
-  font-family: var(--cp-font-display);
-  text-transform: uppercase;
-  text-shadow: 1px 0 var(--cp-secondary), -1px 0 var(--cp-danger);
-}
+Glitch is implemented in two ways in the project:
+1. **Periodic Text Glitch (`.section-heading`)**: Uses an animation `section-glitch` that shifts text-shadow and transforms briefly.
+2. **Hover/Continuous Glitch (`.hero-heading-gradient[data-text]`)**: Uses `::before` and `::after` pseudo-elements with `clip-path` and translations to split the text.
 
-@media (prefers-reduced-motion: no-preference) {
-  .cp-glitch[data-text]::before,
-  .cp-glitch[data-text]::after {
-    content: attr(data-text);
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-  }
-
-  .cp-glitch[data-text]::before {
-    color: var(--cp-secondary);
-    clip-path: inset(0 0 55% 0);
-    transform: translate(1px, -1px);
-  }
-
-  .cp-glitch[data-text]::after {
-    color: var(--cp-danger);
-    clip-path: inset(55% 0 0 0);
-    transform: translate(-1px, 1px);
-  }
-}
-```
-
-Allowed: hero headings, logo marks, selected tabs, warning labels, destructive states.
+**Rule**: Glitch respects `prefers-reduced-motion` in the CSS. Only use glitch for major hero headings or brand marks.
 Forbidden: paragraphs, inputs, cards full of text, every hover state.
 
-## Avoid AI Slop
+## Anti-Slop Rules
 
-- Do not mix yellow, cyan, magenta, red, orange, purple, and green in one UI.
-- Do not add fake tiny technical text unless it labels real data.
-- Do not use generic rounded SaaS cards; use clipped corners and HUD rails.
-- Do not stack glass blur, heavy glow, scanlines, grain, glitch, and gradients together.
-- Do not make every component black with neon borders.
-- Do not make light mode a washed-out dark mode; use white surfaces and slate borders.
-- Do not rely on color alone; selected states need fill, border, icon, rail, or text change.
+- **Palette Control**: Do not mix yellow, magenta, orange, purple, and green. The palette is strictly Red (`#FF003C`) and Cyan (`#22F6E3`).
+- **Geometry**: Do not use generic rounded SaaS cards (`border-radius: 12px` etc.). Use clipped corners (using `var(--cp-notch)`) and HUD rails. `var(--btn-radius)` is just 2px.
+- **Effects Overload**: Do not stack glass blur, heavy glow, scanlines, grain, glitch, and gradients together.
+- **Theme Fidelity**: Do not make light mode a washed-out dark mode; use the crisp white/off-white surfaces (`var(--surface)`) and dark slate outlines (`var(--outline)`). Light mode includes an animated noise grain background; do not override it.

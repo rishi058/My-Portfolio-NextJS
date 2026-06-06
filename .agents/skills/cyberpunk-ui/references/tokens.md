@@ -1,81 +1,43 @@
 # Cyberpunk Tokens
 
-Use CSS custom properties. Do not invent colors, shadow colors, or gradients.
+Use the CSS custom properties defined in `src/app/styles/cyberpunk.css`. Do not invent colors, shadow colors, or gradients. The project explicitly uses a **Red & Cyan** critical systems HUD palette.
 
-## Palette Selection
+## Palette
 
-Ask the user for one `primary` and one `secondary`. If they want a suggestion, recommend **Kitsch Yellow + Cyan**.
+The palette is fixed. Do not ask the user for colors.
 
-| Palette | Primary | Secondary | Best For |
-|---|---:|---:|---|
-| Kitsch Yellow + Cyan | `#FCEE09` | `#22F6E3` | Best default; dark HUD + selected states |
-| Cyan + Magenta | `#00F0FF` | `#FF2A6D` | Night neon, hero/marketing surfaces |
-| Amber + Slate | `#FF9F1C` | `#263241` | Light industrial HUD like `cyberpunk.jpg` |
-| Red + Cyan | `#FF003C` | `#22F6E3` | Critical systems, danger-heavy dashboards |
+| Token | Light Value | Dark Value | Purpose |
+|---|---|---|---|
+| `--cp-primary` | `#FF003C` | `#FF003C` | Primary accent, critical actions, active states. |
+| `--cp-secondary` | `#22F6E3` | `#22F6E3` | Secondary accent, hover states, chart accents. |
+| `--primary-text` | `#CC0030` | `#FF4D70` | Use for highlighted text segments. |
+| `--background` | `#F7F8FC` | `#070A0F` | Main app background. |
+| `--surface` | `#FFFFFF` | `#0C111A` | Cards, panels, elevated elements. |
+| `--on-background` | `#101722` | `#EAFBFF` | Default text color. |
+| `--on-surface` | `#101722` | `#EAFBFF` | Text on surfaces. |
+| `--outline` | `#263241` | `#263241` | Primary border color. |
 
-Rule: one palette per component set. `--cp-danger` may appear only for destructive/error states.
+## Supported Gradients
 
-## CSS Tokens
-
-```css
-:root {
-  --cp-bg: #070A0F;
-  --cp-surface: #0C111A;
-  --cp-surface-2: #111827;
-  --cp-border: #263241;
-  --cp-border-strong: #B8C7D9;
-  --cp-text: #EAFBFF;
-  --cp-muted: #8EA4B8;
-  --cp-on-accent: #070A0F;
-
-  --cp-primary: #FCEE09;
-  --cp-secondary: #22F6E3;
-  --cp-danger: #FF003C;
-
-  --cp-border-width: 1px;
-  --cp-border-width-active: 2px;
-  --cp-radius: 2px;
-  --cp-notch: 14px;
-  --cp-gap: 1rem;
-
-  --cp-gradient-action: linear-gradient(90deg, var(--cp-primary) 0%, var(--cp-secondary) 100%);
-  --cp-gradient-selected: linear-gradient(90deg, var(--cp-primary) 0%, color-mix(in srgb, var(--cp-primary) 70%, var(--cp-secondary)) 100%);
-  --cp-gradient-panel: linear-gradient(135deg, color-mix(in srgb, var(--cp-secondary) 10%, transparent) 0%, transparent 42%), var(--cp-surface);
-  --cp-gradient-border: linear-gradient(90deg, var(--cp-primary), transparent 48%, var(--cp-secondary));
-
-  --cp-shadow-crisp: 4px 4px 0 var(--cp-border);
-  --cp-glow-primary: 0 0 16px color-mix(in srgb, var(--cp-primary) 45%, transparent);
-  --cp-glow-secondary: 0 0 16px color-mix(in srgb, var(--cp-secondary) 42%, transparent);
-}
-
-[data-theme="light"] {
-  --cp-bg: #F7F8FC;
-  --cp-surface: #FFFFFF;
-  --cp-surface-2: #EDF1F6;
-  --cp-border: #263241;
-  --cp-border-strong: #101722;
-  --cp-text: #101722;
-  --cp-muted: #536071;
-  --cp-shadow-crisp: 4px 4px 0 #263241;
-  --cp-glow-primary: 0 0 0 transparent;
-  --cp-glow-secondary: 0 0 0 transparent;
-}
-```
-
-## Supported Gradients Only
-
-- `--cp-gradient-action`: CTA buttons, active nav bars, tiny progress rails.
-- `--cp-gradient-selected`: selected cards, selected tabs, one active chart mark.
-- `--cp-gradient-panel`: large cards/panels only; keep subtle.
-- `--cp-gradient-border`: border-image or 1px separator rails only.
+- `--cp-gradient-action`: `linear-gradient(90deg, #FF003C 0%, #22F6E3 100%)`. Use for CTA backgrounds and active elements.
+- `--cp-gradient-selected`: `linear-gradient(90deg, #FF003C 0%, color-mix(in srgb, #FF003C 70%, #22F6E3) 100%)`.
+- `--cp-gradient-panel`: Use for large cards/panels to give subtle directional shading.
+- `--cp-gradient-border`: `linear-gradient(90deg, #FF003C, transparent 48%, #22F6E3)`. Use for accent rails under navbars.
 
 Never add rainbow gradients, radial blobs, aurora backgrounds, or random neon overlays.
 
-## Theme Rules
+## Shadows & Glows
 
-| Theme | Background | Border | Glow |
-|---|---|---|---|
-| Dark | `--cp-bg`, `--cp-surface` | muted slate, accent on active state | allowed but budgeted |
-| Light | white/off-white | dark slate | off by default; focus/selected only |
+| Variable | Description |
+|---|---|
+| `--cp-shadow-crisp` | Solid, crisp shadow for light and dark modes (e.g. 4px 4px 0 #263241). |
+| `--card-shadow` | Standard geometry shadow for cards. |
+| `--cp-glow-primary` | Primary glow. Automatically `none` in light mode. |
+| `--cp-glow-secondary` | Secondary glow. Automatically `none` in light mode. |
 
-Contrast rule: text must remain readable without relying on glow.
+## Geometry Tokens
+
+- `--cp-notch`: 12px (standard notch)
+- `--cp-notch-sm`: 8px (small notch)
+- `--cp-avatar-notch`: 32px (large notch)
+- `--btn-radius`, `--card-radius`: 2px (sharp corners, no soft rounding)

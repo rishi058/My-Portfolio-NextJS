@@ -1,85 +1,39 @@
 # Frosted Glass Tokens
 
-Use CSS custom properties as the source of truth. Keep the border neutral and thin; use fill, inset highlights, and shadow to create the glass edge.
+Use the CSS custom properties defined in `src/app/styles/frosted-glass.css`. Do not invent values.
 
-## Core Edge System
+## Palette
 
-```css
-:root {
-  --fg-page-bg: #02110a;
+The color palette is Cyan and Cobalt.
+- `--primary-300`: `#67e8f9`
+- `--primary-400`: `#22d3ee`
+- `--primary-500`: `#06b6d4`
+- `--primary-600`: `#0891b2`
+- `--background`: transparent (relies on body background image)
+- `--on-background`: `#1e293b` (light) / `#f1f5f9` (dark)
 
-  --fg-blur-sm: 14px;
-  --fg-blur-md: 22px;
-  --fg-blur-lg: 28px;
-  --fg-saturate: 1.8;
+## Glass Material Tokens
 
-  --fg-fill: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.14) 0%,
-    rgba(255, 255, 255, 0.06) 50%,
-    rgba(255, 255, 255, 0.02) 100%
-  );
-  --fg-border: rgba(255, 255, 255, 0.18);
-  --fg-edge-top: inset 0 1px 0 rgba(255, 255, 255, 0.25);
-  --fg-edge-bottom: inset 0 -1px 0 rgba(0, 0, 0, 0.25);
-  --fg-elevation: 0 10px 30px rgba(0, 0, 0, 0.35);
+Use these to build the frosted glass material.
 
-  --fg-radius-strip: 18px;
-  --fg-radius-row: 20px;
-  --fg-radius-card: 22px;
-  --fg-radius-icon: 24px;
-  --fg-radius-pill: 999px;
-}
-```
+**Fill:**
+- `--fg-fill`, `--fg-fill-card`, `--fg-fill-modal` (Use `var(--fg-fill-card)` for most surfaces).
 
-Apply the edge as a single material recipe:
+**Blur & Saturation:**
+- `--fg-blur-sm`, `--fg-blur-md`, `--fg-blur-lg`
+- `--fg-saturate`
 
-```css
-selector {
-  background: var(--fg-fill);
-  border: 1px solid var(--fg-border);
-  border-radius: var(--fg-radius-card);
-  box-shadow: var(--fg-edge-top), var(--fg-edge-bottom), var(--fg-elevation);
-  backdrop-filter: blur(var(--fg-blur-md)) saturate(var(--fg-saturate));
-  -webkit-backdrop-filter: blur(var(--fg-blur-md)) saturate(var(--fg-saturate));
-}
-```
+**Edges & Highlights:**
+- `--fg-border`: Light neutral border (`rgba(255, 255, 255, 0.35)`)
+- `--fg-edge-top`: Inset highlight (`inset 1px 1px 0 rgba(255, 255, 255, 0.80)`)
+- `--fg-edge-bottom`: Inset shadow (`inset -1px -1px 0 rgba(0, 82, 130, 0.12)`)
 
-## Radius Vocabulary
+**Elevations:**
+- `--fg-elevation-sm`, `--fg-elevation-md`, `--fg-elevation-lg`
 
-| Shape | Radius | Use |
-|---|---:|---|
-| Strip/banner | 18px | promos, full-width bands |
-| Horizontal card | 20px | rows, quick picks |
-| Content card | 22px | album/cards/tall cards |
-| App/icon tile | 24px | compact square tiles |
-| Pill/circle | 999px | chips, play bars, icon buttons |
-
-Rule: rounder means smaller or more interactive. Large content surfaces stay moderately rounded; controls become pills.
-
-## Fallbacks
-
-```css
-@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
-  selector { background: rgba(255, 255, 255, 0.92); }
-}
-
-@media (prefers-reduced-transparency: reduce) {
-  selector {
-    background: rgba(255, 255, 255, 0.94);
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-  }
-}
-
-@media (forced-colors: active) {
-  selector {
-    background: Canvas;
-    border-color: CanvasText;
-    box-shadow: none;
-    color: CanvasText;
-  }
-}
-```
-
-Keep `border-width` at `1px`. If the edge is weak, adjust background richness, fill opacity, inset highlight, or elevation instead.
+## Geometry Tokens
+- `--fg-radius-strip`: `18px`
+- `--fg-radius-row`: `20px`
+- `--fg-radius-card`: `22px`
+- `--fg-radius-icon`: `24px`
+- `--fg-radius-pill`: `999px`

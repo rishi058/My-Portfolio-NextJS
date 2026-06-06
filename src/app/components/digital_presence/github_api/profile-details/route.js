@@ -1,25 +1,50 @@
 import { NextResponse } from 'next/server';
+import https from 'https';
 
-const GITHUB_GRAPHQL = 'https://api.github.com/graphql';
+export const revalidate = 21600; // 6h cache
+
+const GITHUB_GRAPHQL_HOST = 'api.github.com';
+const GITHUB_GRAPHQL_PATH = '/graphql';
 const USERNAME = 'rishi058';
 
-async function fetchGitHub(query, variables) {
+function fetchGitHub(query, variables) {
   const token = process.env.GITHUB_TOKEN;
   if (!token) throw new Error('GITHUB_TOKEN is not set');
 
-  const res = await fetch(GITHUB_GRAPHQL, {
-    method: 'POST',
-    headers: {
-      Authorization: `bearer ${token}`,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ query, variables }),
-    next: { revalidate: 21600 }, // 6h cache
-  });
+  const body = JSON.stringify({ query, variables });
 
-  const json = await res.json();
-  if (json.errors) throw new Error(json.errors[0].message);
-  return json.data;
+  return new Promise((resolve, reject) => {
+    const options = {
+      hostname: GITHUB_GRAPHQL_HOST,
+      path: GITHUB_GRAPHQL_PATH,
+      method: 'POST',
+      headers: {
+        Authorization: `bearer ${token}`,
+        'Content-Type': 'application/json',
+        'Content-Length': Buffer.byteLength(body),
+        'User-Agent': 'portfolio-website/1.0',
+      },
+    };
+
+    const req = https.request(options, (res) => {
+      let data = '';
+      res.on('data', (chunk) => { data += chunk; });
+      res.on('end', () => {
+        try {
+          const json = JSON.parse(data);
+          if (json.errors) return reject(new Error(json.errors[0].message));
+          if (!json.data) return reject(new Error(json.message || JSON.stringify(json)));
+          resolve(json.data);
+        } catch (e) {
+          reject(e);
+        }
+      });
+    });
+
+    req.on('error', reject);
+    req.write(body);
+    req.end();
+  });
 }
 
 // Fetch contributions for a specific year

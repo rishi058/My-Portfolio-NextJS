@@ -1,27 +1,128 @@
 "use client";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
+
+// Generated once per page-load; survives theme switches because it lives
+// outside the component function scope.
+const VISITOR_COUNT = Math.floor(Math.random() * (500 - 400 + 1)) + 400;
+
+// Stable key for TypeAnimation — derived from VISITOR_COUNT so it is
+// constant for the entire session but unique across hard reloads.
+const TYPE_ANIM_KEY = `type-anim-${VISITOR_COUNT}`; 
+
 import { TypeAnimation } from "react-type-animation";
-import { motion } from "framer-motion";
+import { motion, useAnimate } from "framer-motion";
 import Link from "next/link";
-import dynamic from "next/dynamic";
 import BorderGlow from "../border_glow/BorderGlow";
 
-const AnimatedNumbers = dynamic(
-  () => {
-    return import("react-animated-numbers");
-  },
-  { ssr: false }
-);
+// FIX: themes set different line-heights on .hero-visitor-count (e.g. 45px
+// for a 30px font). Using height:'1em' would clip. Instead we measure the
+// actual rendered digit height via a hidden ref and use that for the clip
+// window and all translateY calculations.
+
+const DIGITS = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+function DigitColumn({ digit, delay = 0 }) {
+  const [scope, animate] = useAnimate();
+  const measureRef = useRef(null);
+  const [digitH, setDigitH] = React.useState(null);
+
+  // Measure actual rendered height of one digit (respects theme font-size)
+  useEffect(() => {
+    if (measureRef.current) {
+      setDigitH(measureRef.current.getBoundingClientRect().height);
+    }
+  }, []);
+
+  // Run the scroll animation once we know the real digit height
+  useEffect(() => {
+    if (digitH === null || !scope.current) return;
+    animate(
+      scope.current,
+      { y: -(digit * digitH) },
+      { duration: 1.4, delay, ease: [0.16, 1, 0.3, 1] }
+    );
+  }, [digit, delay, digitH]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  return (
+    <>
+      {/* Hidden measurement span — 1 digit with reset line-height */}
+      <span
+        ref={measureRef}
+        aria-hidden="true"
+        style={{
+          position: 'absolute',
+          visibility: 'hidden',
+          pointerEvents: 'none',
+          lineHeight: 'normal',
+          display: 'inline-block',
+        }}
+      >
+        0
+      </span>
+
+      {/* Visible clipping window — height matches the measured digit */}
+      <span
+        style={{
+          display: 'inline-block',
+          overflow: 'hidden',
+          height: digitH ? `${digitH}px` : '1em',
+          verticalAlign: 'bottom',
+          position: 'relative',
+        }}
+      >
+        <span
+          ref={scope}
+          style={{
+            display: 'inline-flex',
+            flexDirection: 'column',
+            willChange: 'transform',
+          }}
+        >
+          {DIGITS.map((d) => (
+            <span
+              key={d}
+              style={{
+                display: 'block',
+                height: digitH ? `${digitH}px` : '1em',
+                lineHeight: 'normal',
+                textAlign: 'center',
+              }}
+            >
+              {d}
+            </span>
+          ))}
+        </span>
+      </span>
+    </>
+  );
+}
+
+function SlotNumber({ value }) {
+  const formatted = value.toLocaleString('en-US');
+  const chars = formatted.split('');
+
+  return (
+    <span style={{ display: 'inline-flex', alignItems: 'flex-end', position: 'relative' }}>
+      {chars.map((ch, i) => {
+        if (ch === ',') {
+          return (
+            <span key={`comma-${i}`} style={{ display: 'inline-block', lineHeight: 'normal', alignSelf: 'flex-end' }}>
+              ,
+            </span>
+          );
+        }
+        const digitValue = parseInt(ch, 10);
+        // Stagger delay: rightmost digit animates first (slot machine feel)
+        const delay = (chars.filter(c => c !== ',').length - 1 - chars.slice(0, i).filter(c => c !== ',').length) * 0.06;
+        return <DigitColumn key={`digit-${i}`} digit={digitValue} delay={delay} />;
+      })}
+    </span>
+  );
+}
 
 const HeroSection = () => {
   const [hovered, setHovered] = React.useState(false);
   const canvasRef = useRef(null);
-  const [visitorCount, setVisitorCount] = useState(0);
-
-  useEffect(() => {
-    const randomNum = Math.floor(Math.random() * (500 - 400 + 1)) + 400;
-    setVisitorCount(randomNum);
-  }, []);
 
   useEffect(() => {
     let app;
@@ -132,6 +233,7 @@ const HeroSection = () => {
             </span>
             <br></br>
             <TypeAnimation
+              key={TYPE_ANIM_KEY}
               sequence={[
                 "Rishi",
                 1000,
@@ -217,6 +319,7 @@ const HeroSection = () => {
           </span>
           <br></br>
           <TypeAnimation
+            key={TYPE_ANIM_KEY}
             sequence={[
               "Rishi",
               1000,
@@ -274,18 +377,7 @@ const HeroSection = () => {
         <div className="hero-visitor-text flex flex-wrap items-center justify-center text-center gap-x-2">
           <span>You are my</span>
           <span className="hero-visitor-count inline-flex items-baseline">
-            <AnimatedNumbers
-              includeComma
-              animateToNumber={visitorCount}
-              locale="en-US"
-              configs={(_, index) => {
-                return {
-                  mass: 1,
-                  friction: 100,
-                  tensions: 140 * (index + 1),
-                };
-              }}
-            />
+            <SlotNumber value={VISITOR_COUNT} />
             <sup className="align-super ml-0.5">th</sup>
           </span>
           <span>visitor</span>
