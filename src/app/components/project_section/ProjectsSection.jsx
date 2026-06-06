@@ -60,11 +60,11 @@ const ProjectsSection = () => {
     <section id="projects" className="sm:py-4 h-full w-full flex flex-col justify-start md:justify-center">
       {/* Inner wrapper — centers the whole block vertically on md+ */}
       <div className="flex flex-col w-full">
-        <h2 className="section-heading flex items-center justify-center gap-2 sm:gap-3 mb-4 sm:mb-6">
+        <h2 className="section-heading flex items-center justify-center gap-2 sm:gap-3 mb-8 sm:mb-6">
           <span className="section-heading-icon material-symbols-outlined text-3xl">code</span>
           My Projects
         </h2>
-        <div className="flex flex-row justify-center items-center gap-2 sm:gap-3 mb-4 sm:mb-6 flex-wrap">
+        <div className="flex flex-row justify-center items-center gap-3 sm:gap-3 mb-8 sm:mb-6 flex-wrap">
           {uniqueTags.map((tagName) => (
             <ProjectTag
               key={tagName}
@@ -75,7 +75,7 @@ const ProjectsSection = () => {
           ))}
         </div>
 
-        <ul ref={ref} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6 w-full">
+        <ul ref={ref} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-4 md:gap-6 w-full">
           {currentProjects.map((project, index) => (
             <motion.li
               key={project.id}
@@ -97,7 +97,7 @@ const ProjectsSection = () => {
         </ul>
 
         {totalPages > 1 && (
-          <div className="flex justify-center items-center gap-4 mt-6">
+          <div className="flex justify-center items-center gap-4 mt-10 sm:mt-6">
             <button
               onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
               disabled={currentPage === 1}

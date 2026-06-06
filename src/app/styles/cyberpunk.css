@@ -1695,8 +1695,8 @@ html.cyberpunk .border-glow-card {
     --font-size-hero: 32px;
     --font-size-section: 26px;
     --font-size-dp: 1.5rem;
-    --cp-notch: 8px;
-    --cp-avatar-notch: 24px;
+    --cp-notch: 12px;
+    --cp-avatar-notch: 32px;
   }
 
   html.cyberpunk .navbar-brand {
@@ -1727,8 +1727,8 @@ html.cyberpunk .border-glow-card {
     --font-size-section: 22px;
     --font-size-dp: 1.25rem;
     --font-size-body: 15px;
-    --cp-notch: 6px;
-    --cp-avatar-notch: 16px;
+    --cp-notch: 12px;
+    --cp-avatar-notch: 32px;
     --card-shadow: 2px 2px 0 var(--outline);
   }
 
@@ -1766,14 +1766,6 @@ html.cyberpunk .border-glow-card {
 
   html.cyberpunk .github-section-title {
     font-size: 0.6rem;
-  }
-
-  /* Disable clip-path on mobile to prevent overflow clipping */
-  html.cyberpunk .about-description-box,
-  html.cyberpunk .platform-link,
-  html.cyberpunk .github-card,
-  html.cyberpunk .project-card {
-    clip-path: none;
   }
 }
 

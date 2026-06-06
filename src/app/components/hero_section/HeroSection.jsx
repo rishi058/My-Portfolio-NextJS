@@ -195,39 +195,19 @@ const HeroSection = () => {
   return (
     <section className="h-full w-full flex flex-col justify-center gap-4 sm:justify-evenly sm:py-4 lg:py-8">
 
-      {/* ── Mobile: stack avatar above text, both centered
-           ── sm+:   12-col grid (avatar right, text left) ── */}
-
-      {/* Mobile-only avatar (centered, exact square) */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.5 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.5 }}
-        className="sm:hidden flex justify-center"
-      >
-        <div className="relative w-[180px] h-[180px] flex-shrink-0">
-          <BorderGlow
-            className="hero-avatar-border w-full h-full"
-            borderRadius={4}
-            animated
-            backgroundColor="transparent"
-            fillOpacity={0}
-            colors={['#14b8a6', '#0ea5e9', '#3b82f6']}
-          >
-            <canvas ref={canvasRef} className="hero-avatar-canvas absolute inset-0 w-full h-full pointer-events-auto" />
-          </BorderGlow>
-        </div>
-      </motion.div>
-
-      {/* sm+ grid layout */}
-      <div className="hidden sm:grid sm:grid-cols-12 gap-8">
+      {/* ── Layout: 
+          Mobile & Tablet: flex column, avatar first, then text, centered 
+          lg+: grid, 12 cols, text left (span 8), avatar right (span 4) ── */}
+      <div className="flex flex-col lg:grid lg:grid-cols-12 gap-10 lg:gap-8 items-center w-full">
+        
+        {/* Text Container: order 2 on mobile/tablet (below avatar), col-span 8 on lg+ (left) */}
         <motion.div
           initial={{ opacity: 0, scale: 0.5 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5 }}
-          className="col-span-8 place-self-center text-left justify-self-start"
+          className="order-2 lg:order-1 lg:col-span-8 place-self-center text-center lg:text-left justify-self-start w-full"
         >
-          <h1 className="hero-heading mb-4 sm:mb-6">
+          <h1 className="hero-heading mb-6 lg:mb-6">
             <span className="hero-heading-gradient">
               Hello, I&apos;m{" "}
             </span>
@@ -256,16 +236,16 @@ const HeroSection = () => {
               className="hero-type-animation"
             />
           </h1>
-          <p className="hero-description mb-5 sm:mb-8 max-w-2xl">
+          <p className="hero-description mb-8 lg:mb-8 max-w-2xl mx-auto lg:mx-0">
             🌱 I&apos;m currently learning core AI/ML.
             <br />
             <br />
             💬 Want to build something cool together? Let&apos;s connect!
           </p>
-          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 items-center sm:justify-start">
+          <div className="flex flex-col sm:flex-row gap-5 lg:gap-4 items-center lg:justify-start">
             <Link
               href="mailto:rishi.cs.dev@gmail.com"
-              className="hero-cta-primary px-5 py-2.5 sm:px-6 sm:py-3 w-full sm:w-fit flex items-center justify-center min-w-[120px]"
+              className="hero-cta-primary px-5 py-2.5 sm:px-6 sm:py-3 w-full lg:w-fit flex items-center justify-center min-w-[120px]"
               onMouseEnter={() => setHovered(true)}
               onMouseLeave={() => setHovered(false)}
             >
@@ -278,7 +258,7 @@ const HeroSection = () => {
             </Link>
             <Link
               href={'https://drive.google.com/file/d/18Fof1b0Gwl4E2YnVQk5xIGLkc3N5XwP4/view'}
-              className="hero-cta-secondary px-5 py-2.5 sm:px-6 sm:py-3 w-full sm:w-fit text-center"
+              className="hero-cta-secondary px-5 py-2.5 sm:px-6 sm:py-3 w-full lg:w-fit text-center"
               target="_blank"
             >
               View Resume
@@ -286,12 +266,12 @@ const HeroSection = () => {
           </div>
         </motion.div>
 
-        {/* sm+ Avatar */}
+        {/* Avatar Container: order 1 on mobile/tablet (top), col-span 4 on lg+ (right) */}
         <motion.div
           initial={{ opacity: 0, scale: 0.5 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5 }}
-          className="col-span-4 place-self-center relative w-full max-w-[300px] lg:max-w-[380px] aspect-square mx-auto"
+          className="order-1 lg:order-2 lg:col-span-4 place-self-center relative w-[200px] sm:w-[300px] lg:max-w-[380px] aspect-square mx-auto flex-shrink-0"
         >
           <BorderGlow
             className="hero-avatar-border w-full h-full"
@@ -304,73 +284,8 @@ const HeroSection = () => {
             <canvas ref={canvasRef} className="hero-avatar-canvas absolute inset-0 w-full h-full pointer-events-auto" />
           </BorderGlow>
         </motion.div>
-      </div>
 
-      {/* Mobile-only text (below avatar) */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.5 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.5 }}
-        className="sm:hidden text-center w-full"
-      >
-        <h1 className="hero-heading mb-3">
-          <span className="hero-heading-gradient">
-            Hello, I&apos;m{" "}
-          </span>
-          <br></br>
-          <TypeAnimation
-            key={TYPE_ANIM_KEY}
-            sequence={[
-              "Rishi",
-              1000,
-              "a Full-Stack(MERN) Developer",
-              1000,
-              "a UI/UX Designer",
-              1000,
-              "a Flutter Developer",
-              1000,
-              "a Agentic AI Engineer",
-              1000,
-              "a Python Developer",
-              1000,
-              "a Competitive Programmer",
-              1000,
-            ]}
-            wrapper="span"
-            speed={50}
-            repeat={Infinity}
-            className="hero-type-animation"
-          />
-        </h1>
-        <p className="hero-description mb-4 max-w-2xl mx-auto">
-          🌱 I&apos;m currently learning core AI/ML.
-          <br />
-          <br />
-          💬 Want to build something cool together? Let&apos;s connect!
-        </p>
-        <div className="flex flex-col gap-3 items-center">
-          <Link
-            href="mailto:rishi.cs.dev@gmail.com"
-            className="hero-cta-primary px-5 py-2.5 w-full flex items-center justify-center"
-            onMouseEnter={() => setHovered(true)}
-            onMouseLeave={() => setHovered(false)}
-          >
-            <span className={`text-center whitespace-nowrap overflow-hidden transition-all duration-500 ease-in-out ${hovered ? 'w-0 opacity-0' : 'w-[65px] opacity-100'}`}>
-              Hire Me
-            </span>
-            <span className={`text-center whitespace-nowrap overflow-hidden transition-all duration-500 ease-in-out ${hovered ? 'w-[185px] opacity-100' : 'w-0 opacity-0'}`}>
-              rishi.cs.dev@gmail.com
-            </span>
-          </Link>
-          <Link
-            href={'https://drive.google.com/file/d/18Fof1b0Gwl4E2YnVQk5xIGLkc3N5XwP4/view'}
-            className="hero-cta-secondary px-5 py-2.5 w-full text-center"
-            target="_blank"
-          >
-            View Resume
-          </Link>
-        </div>
-      </motion.div>
+      </div>
 
       {/* You are my Xth Visitor */}
       <div className="mt-1 sm:mt-0">

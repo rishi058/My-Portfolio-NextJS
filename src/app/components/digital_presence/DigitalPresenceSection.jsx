@@ -123,7 +123,7 @@ const DigitalPresenceSection = () => {
       className="w-full h-full flex flex-col items-center justify-center py-4 sm:py-6"
     >
       {/* Single inner block — the whole group centers as one unit */}
-      <div className="flex flex-col items-center gap-4 sm:gap-5 w-full">
+      <div className="flex flex-col items-center gap-10 sm:gap-5 w-full">
 
         {/* Section heading */}
         <h2 className="section-heading flex items-center justify-center gap-2 sm:gap-3 mb-0">
@@ -132,14 +132,14 @@ const DigitalPresenceSection = () => {
         </h2>
 
         {/* Row 1: Socials & Coding Platforms — side by side on sm+, stacked on mobile */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-8 md:gap-16 flex-shrink-0 w-full justify-items-center">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-10 sm:gap-8 md:gap-16 flex-shrink-0 w-full justify-items-center">
           {/* Socials */}
-          <div className="flex flex-col gap-3 items-center">
+          <div className="flex flex-col gap-6 sm:gap-3 items-center">
             <h3 className="dp-subheading flex items-center gap-2">
               <span className="material-symbols-outlined text-[16px]">group</span>
               Socials
             </h3>
-            <div className="flex flex-wrap justify-center gap-3">
+            <div className="flex flex-wrap justify-center gap-5 sm:gap-3">
               {SOCIALS.map(s => (
                 <PlatformLink key={s.id} platform={s} />
               ))}
@@ -147,12 +147,12 @@ const DigitalPresenceSection = () => {
           </div>
 
           {/* Coding Platforms */}
-          <div className="flex flex-col gap-3 items-center">
+          <div className="flex flex-col gap-6 sm:gap-3 items-center">
             <h3 className="dp-subheading flex items-center gap-2">
               <span className="material-symbols-outlined text-[16px]">code</span>
               Coding Platforms
             </h3>
-            <div className="flex flex-wrap justify-center gap-3">
+            <div className="flex flex-wrap justify-center gap-5 sm:gap-3">
               {CODING_PLATFORMS.map(p => (
                 <PlatformLink key={p.id} platform={p} />
               ))}

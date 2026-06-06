@@ -594,6 +594,8 @@ html:not(.glass):not(.neo) .navbar {
   box-shadow: 0 0 25px rgba(20, 184, 166, 0.6);
 }
 .project-tag--selected:hover {
+  background-color: var(--primary-500);
+  border-color: var(--primary-500);
   color: #ffffff;
   box-shadow: 0 0 25px rgba(20, 184, 166, 0.6);
 }

@@ -20,7 +20,7 @@ export default function Home() {
           w-full max-w-container-max mx-auto
           px-margin-mobile md:px-margin-desktop
           flex items-center justify-center
-          pt-[calc(var(--navbar-h)+1.5rem)] pb-6 sm:pb-8
+          pt-[calc(var(--navbar-h)+3rem)] pb-12 sm:pb-16
           md:py-0 md:h-screen md:snap-start md:snap-always
         ">
           <HeroSection />
@@ -31,7 +31,7 @@ export default function Home() {
           w-full max-w-container-max mx-auto
           px-margin-mobile md:px-margin-desktop
           flex items-start md:items-center justify-center
-          py-5 sm:py-6
+          py-12 sm:py-16
           md:py-0 md:h-screen md:snap-start md:snap-always
         ">
           <AboutSection />
@@ -42,7 +42,7 @@ export default function Home() {
           w-full max-w-container-max mx-auto
           px-margin-mobile md:px-margin-desktop
           flex items-start md:items-center justify-center
-          py-5 sm:py-6
+          py-12 sm:py-16
           md:py-0 md:h-screen md:snap-start md:snap-always
         ">
           <ProjectsSection />
@@ -53,7 +53,7 @@ export default function Home() {
           w-full flex flex-col
           md:h-screen md:snap-start md:snap-always
         ">
-          <div className="flex-1 w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop flex items-center justify-center py-4 md:py-0">
+          <div className="flex-1 w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop flex items-center justify-center py-12 md:py-0">
             <DigitalPresenceSection />
           </div>
           <div className="footer-wrapper w-full">
