@@ -57,7 +57,7 @@ const ProjectsSection = () => {
   };
 
   return (
-    <section id="projects" className="sm:py-4 h-full w-full flex flex-col justify-center">
+    <section id="projects" className="sm:py-4 h-full w-full flex flex-col justify-start md:justify-center">
       {/* Inner wrapper — centers the whole block vertically on md+ */}
       <div className="flex flex-col w-full">
         <h2 className="section-heading flex items-center justify-center gap-2 sm:gap-3 mb-4 sm:mb-6">

@@ -8,6 +8,21 @@
 @tailwind utilities;
 
 /* ============================================
+   SPLASH CURSOR — hidden by default, neon.css opts in
+   ============================================ */
+
+/* Hide SplashCursor on all themes by default.
+   neon.css (the default theme, no extra class) explicitly re-shows it.
+   This prevents it from appearing on non-neon themes loaded from localStorage.
+   NOTE: We use visibility:hidden (NOT display:none) to preserve canvas layout
+   dimensions — display:none collapses clientWidth/Height to 0 which corrupts
+   the SplashCursor WebGL framebuffers via resizeCanvas(). */
+.splash-cursor-wrapper {
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+/* ============================================
    UTILITIES
    ============================================ */
 

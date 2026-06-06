@@ -231,6 +231,15 @@ body {
   display: block;
 }
 
+/* ── SplashCursor — shown ONLY in Neon theme ─────────────────
+   globals.css hides .splash-cursor-wrapper with visibility:hidden.
+   This rule re-enables it only when no other theme class is
+   present on <html> (i.e. the Neon / default theme is active). */
+html:not(.neo):not(.glass):not(.neumorphic):not(.cyberpunk) .splash-cursor-wrapper {
+  visibility: visible !important;
+  pointer-events: none !important;
+}
+
 .footer-wrapper {
   background-color: var(--surface);
 }

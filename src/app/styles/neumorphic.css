@@ -286,7 +286,8 @@ html.neumorphic .silk-overlay {
 }
 
 html.neumorphic .splash-cursor-wrapper {
-  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
 }
 
 

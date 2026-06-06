@@ -236,7 +236,7 @@ html.neo ::-webkit-scrollbar-thumb:hover { background: var(--on-surface); }
 /* ── 4. SILK + SPLASH CURSOR — DISABLED IN NEO MODE ────────── */
 
 html.neo .silk-overlay { display: none !important; }
-html.neo .splash-cursor-wrapper { display: none !important; }
+html.neo .splash-cursor-wrapper { visibility: hidden !important; pointer-events: none !important; }
 
 
 /* ═══════════════════════════════════════════════════════════════

@@ -262,6 +262,64 @@ html.cyberpunk body {
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  position: relative;
+  isolation: isolate;
+}
+
+/* ── Light-mode: animated noise grain ───────────────────────────── */
+html.cyberpunk:not(.dark) body::before {
+  content: "";
+  position: fixed;
+  inset: -30%;          /* oversized so translate animation has room */
+  width: 160%;
+  height: 160%;
+  pointer-events: none;
+  z-index: 9999;        /* above navbar (z-[100]) and footer */
+  /* SVG feTurbulence noise as a data-URI — no JS, no external asset */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 300px 300px;  
+  opacity: 0.25; 
+  mix-blend-mode: multiply;
+  animation: cp-noise-drift 1s steps(1, end) infinite; 
+  will-change: transform;
+}
+
+/* ── Light-mode: red-to-white diagonal gradient ─────────────────── */
+html.cyberpunk:not(.dark) body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9998;        /* above navbar (z-[100]) and footer, just below noise */
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, #FF003C 8%, transparent)  0%,
+    color-mix(in srgb, #FF003C 3%, transparent)  30%,
+    transparent                                   60%,
+    rgba(255, 255, 255, 0.0)                      100%
+  );
+  opacity: 1;
+}
+
+/* Noise drift: 8 discrete frames so it flickers like real film grain */
+@keyframes cp-noise-drift {
+  0%   { transform: translate(0,     0);   }
+  12%  { transform: translate(-4px,  3px); }
+  25%  { transform: translate(5px,  -2px); }
+  37%  { transform: translate(-3px,  5px); }
+  50%  { transform: translate(4px,   1px); }
+  62%  { transform: translate(-5px, -4px); }
+  75%  { transform: translate(2px,   4px); }
+  87%  { transform: translate(-2px, -5px); }
+  100% { transform: translate(0,     0);   }
+}
+
+/* Respect reduced-motion: freeze the noise, keep gradient */
+@media (prefers-reduced-motion: reduce) {
+  html.cyberpunk:not(.dark) body::before {
+    animation: none;
+  }
 }
 
 html.cyberpunk ::selection {
@@ -298,7 +356,8 @@ html.cyberpunk:not(.dark) .silk-overlay {
 }
 
 html.cyberpunk .splash-cursor-wrapper {
-  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
 }
 
 
@@ -428,6 +487,9 @@ html.cyberpunk .navbar {
   background-color: var(--background);
   border-bottom: 1px solid var(--navbar-border-color);
   box-shadow: var(--navbar-shadow);
+  /* position: fixed is set via Tailwind — do NOT override it here.
+     `fixed` creates a containing block, so the ::after pseudo-element
+     anchors correctly without needing a separate position: relative rule. */
 }
 
 /* Accent rail under navbar */
@@ -438,10 +500,6 @@ html.cyberpunk .navbar::after {
   height: 1px;
   background: var(--cp-gradient-border);
   opacity: 0.6;
-}
-
-html.cyberpunk .navbar {
-  position: relative;
 }
 
 html.cyberpunk .navbar-brand {
