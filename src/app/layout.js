@@ -19,6 +19,7 @@ export const viewport = {
 
 import SplashCursor from './components/SplashCursor'
 import Silk from './components/Silk'
+import FrostedGlassBackground from './components/FrostedGlassBackground'
 
 export default function RootLayout({ children }) {
   return (
@@ -43,8 +44,8 @@ export default function RootLayout({ children }) {
                   if (mode === 'neon-light') { mode = 'light'; localStorage.setItem('sysmon-theme', 'light'); }
 
                   /* ── Apply style (neon vs neo vs glass vs neumorphic vs cyberpunk) ── */
-                  if (style === 'neo') root.classList.add('neo');
-                  if (style === 'glass') root.classList.add('glass');
+                   if (style === 'neo') root.classList.add('neo');
+                   if (style === 'glass') root.classList.add('glass');
                   if (style === 'neumorphic') root.classList.add('neumorphic');
                   if (style === 'cyberpunk') root.classList.add('cyberpunk');
 
@@ -72,6 +73,7 @@ export default function RootLayout({ children }) {
             rotation={0}
           />
         </div>
+        <FrostedGlassBackground />
         {children}
       </body>
     </html>

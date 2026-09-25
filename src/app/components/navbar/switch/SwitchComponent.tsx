@@ -24,7 +24,7 @@ type RootProps = ComponentProps<typeof Switch.Root> & {
 };
 
 export const Root = forwardRef<HTMLButtonElement, RootProps>(function Root(
-  { isDark, size, style, ...props },
+  { isDark, size, style, className, ...props },
   ref
 ) {
   const sizeNum = parseSizeToRem(size);
@@ -35,7 +35,7 @@ export const Root = forwardRef<HTMLButtonElement, RootProps>(function Root(
     <SwitchContext.Provider value={{ size: sizeNum }}>
       <Switch.Root
         className={`relative rounded-full outline-none transition-all duration-300 ${
-          props.className ?? ""
+          className ?? ""
         }`}
         style={{
           width: `${width}rem`,
@@ -58,7 +58,7 @@ type ThumbProps = ComponentProps<typeof Switch.Thumb> & {
 };
 
 export const Thumb = forwardRef<HTMLSpanElement, ThumbProps>(function Thumb(
-  { isDark, style, ...props },
+  { isDark, style, className, ...props },
   ref
 ) {
   const { size: sizeNum } = useContext(SwitchContext);
@@ -80,7 +80,7 @@ export const Thumb = forwardRef<HTMLSpanElement, ThumbProps>(function Thumb(
       `}</style>
       <Switch.Thumb
         className={`flex items-center justify-center rounded-full transition-transform duration-300 ${styleId} ${
-          props.className || ""
+          className || ""
         }`}
         style={{
           width: `${thumbSize}rem`,

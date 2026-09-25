@@ -109,7 +109,13 @@ export default function CircleAnimationSwitch({ size }: { size?: number | string
   }
 
   return (
-    <Switch.Root checked={isDarkMode} onCheckedChange={toggleDarkMode} isDark={isDarkMode} size={size}>
+    <Switch.Root
+      checked={isDarkMode}
+      onCheckedChange={toggleDarkMode}
+      isDark={isDarkMode}
+      size={size}
+      className="theme-color-mode-toggle"
+    >
       {/* Thumb with icon - positioned first so it's behind labels visually */}
       <Switch.Thumb ref={ref} isDark={isDarkMode}>
         {isDarkMode ? (
